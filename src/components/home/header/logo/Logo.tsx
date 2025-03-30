@@ -1,12 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 28.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 280 280" style="enable-background:new 0 0 280 280;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FFFFFF;}
-</style>
-<g transform="translate(0.000000,271.000000) scale(0.100000,-0.100000)">
-	<path class="st0" d="M1097.4,2651.5c-179.2-26.9-470.7-70.2-647-95.6c-176.3-26.9-329.9-53.8-342.7-61.2
+//CSS
+import "./Logo.css";
+
+//Dependency
+import { useMemo } from "react";
+
+interface LogoProps {
+  text?: string;
+  size?: number;
+  color?: string;
+  onClick?: () => void;
+}
+
+function Logo({ text, size = 50, color = "black", onClick }: LogoProps) {
+  const logoSrc = useMemo(() => generateLogo(color, size), [color, size]);
+
+  return (
+    <div
+      className="logo-container"
+      onClick={onClick}
+      style={{
+        cursor: onClick ? "pointer" : "default",
+        gap: `${size / 7}px`,
+      }}
+    >
+      <img src={logoSrc} />
+
+      {text && (
+        <h3 style={{ fontSize: `${size / 2}px`, color: color }}>
+          {text.toUpperCase()}
+        </h3>
+      )}
+    </div>
+  );
+}
+
+export default Logo;
+
+function generateLogo(color = "black", size = 50) {
+  const svg = `
+     <svg
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 280 280"
+      height= "${size}px"
+      width= "${size}px"
+
+    >
+      <g transform="translate(0.000000,271.000000) scale(0.100000,-0.100000)">
+        <path
+          fill="${color}"
+          d="M1097.4,2651.5c-179.2-26.9-470.7-70.2-647-95.6c-176.3-26.9-329.9-53.8-342.7-61.2
 		c-12.8-7.5-41.2-32.9-61.1-59.8c-34.1-43.3-37-55.3-37-197.2c0-83.7,5.7-292.8,14.2-466.1c7.1-171.8,19.9-507.9,28.4-745.4
 		c17.1-496,17.1-494.5,142.2-561.7C382.1,364.4,1272.3-70.3,1307.8-79.3c31.3-7.5,172.1,43.3,668.3,245
 		c345.5,138.9,644.2,265.9,664.1,280.9c73.9,56.8,81.1,95.6,105.2,622.9c58.3,1244.4,58.3,1254.9,28.4,1307.1
@@ -23,6 +68,12 @@
 		c-4.3,82.2-15.6,373.5-22.8,643.9c-7.1,271.9-18.5,564.7-22.8,654.3C190.2,2285.5,174.5,2276.5,394.9,2219.8z M2607.5,2134.6
 		c-5.7-52.3-22.8-413.8-39.8-803.7c-19.9-478-35.5-715.6-45.5-726c-10-9-173.5-79.2-365.4-155.4S1713.1,271.8,1597.9,224
 		c-160.7-65.7-213.3-80.7-219-65.7c-10,28.4,1.4,1825.5,11.4,1836c7.1,7.5,237.5,53.8,965.5,194.2c98.1,19.4,196.2,35.9,219,37.3
-		l41.2,1.5L2607.5,2134.6z"/>
-</g>
-</svg>
+		l41.2,1.5L2607.5,2134.6z"
+        />
+      </g>
+    </svg>
+  `;
+
+  // Encode the SVG as a Data URL
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}

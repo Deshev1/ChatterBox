@@ -12,7 +12,7 @@
 
   /* Fonts */
   --primary-font: "Inter", sans-serif;
-  --logo-font: "Madimi One", sans-serif;
+  --logo-font: "Madimi One", Arial, sans-serif;
   /* Fonts end*/
 
   /* Spacing */
@@ -21,6 +21,9 @@
   --space-md: 32px;
   --space-lg: 64px;
   /* Spacing end*/
+
+  /*Colors*/
+  --main-color: rgb(105, 177, 105);
 
   /* VARIABLES END*/
 }
@@ -50,7 +53,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Madimi One", sans-serif;
+  font-family: var(--logo-font);
 }
 
 img,

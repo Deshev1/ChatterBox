@@ -1,11 +1,11 @@
+//CSS
 import "./App.css";
 
+//Components
+import Home from "./components/home/Home";
+
 function App() {
-  return (
-    <div className="app-container">
-      <h2>ChatterBox</h2>
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
