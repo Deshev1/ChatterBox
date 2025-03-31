@@ -8,19 +8,18 @@ interface LogoProps {
   text?: string;
   size?: number;
   color?: string;
-  onClick?: () => void;
+  handleClick?: () => void;
 }
 
-function Logo({ text, size = 50, color = "black", onClick }: LogoProps) {
+function Logo({ text, size = 45, color = "black", handleClick }: LogoProps) {
   const logoSrc = useMemo(() => generateLogo(color, size), [color, size]);
 
   return (
     <div
       className="logo-container"
-      onClick={onClick}
+      onClick={handleClick}
       style={{
-        cursor: onClick ? "pointer" : "default",
-        gap: `${size / 7}px`,
+        cursor: handleClick ? "pointer" : "default",
       }}
     >
       <img src={logoSrc} />

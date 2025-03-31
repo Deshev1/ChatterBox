@@ -1,0 +1,16 @@
+.landing-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.landing-info h1 {
+  font-size: 80px;
+  text-transform: uppercase;
+  line-height: 62px;
+}
+
+.landing-btns {
+  display: flex;
+  gap: var(--space-sm);
+}

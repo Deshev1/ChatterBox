@@ -2,10 +2,10 @@
 import "./App.css";
 
 //Components
-import Home from "./components/home/Home";
+import AllRoutes from "./routes/Routes";
 
 function App() {
-  return <Home />;
+  return <AllRoutes />;
 }
 
 export default App;

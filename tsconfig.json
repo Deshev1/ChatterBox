@@ -1,7 +1,18 @@
 {
   "files": [],
+
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true, // Enable strict mode
+    "esModuleInterop": true,
+    "moduleResolution": "Node", // Ensure Node module resolution
+    "jsx": "react-jsx",
+    "types": ["node", "react", "react-dom", "react-router-dom"]
+  }
 }

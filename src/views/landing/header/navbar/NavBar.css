@@ -1,0 +1,16 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 300ms;
+}
+
+.navbar a:hover {
+  font-weight: 800;
+}

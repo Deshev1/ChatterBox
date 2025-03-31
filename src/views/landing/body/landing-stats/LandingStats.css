@@ -1,0 +1,6 @@
+.landing-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-evenly;
+}

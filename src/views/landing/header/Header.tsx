@@ -1,9 +1,9 @@
 //CSS
 import "./Header.css";
-import NavBar from "./nav-bar/NavBar";
 
 //Components
-import Logo from "./logo/Logo";
+import Logo from "../../../components/logo/Logo";
+import NavBar from "./navbar/NavBar";
 
 function Header() {
   return (

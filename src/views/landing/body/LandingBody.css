@@ -1,0 +1,8 @@
+.landing-body {
+  width: 100rem;
+  min-height: 40rem;
+  height: 50rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin-top: 77px;
+}

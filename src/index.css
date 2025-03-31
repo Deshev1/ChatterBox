@@ -22,8 +22,17 @@
   --space-lg: 64px;
   /* Spacing end*/
 
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+  --radius-circle: 50%;
+  /* Spacing end*/
+
   /*Colors*/
   --main-color: rgb(105, 177, 105);
+  --main-color-drk: rgb(30, 121, 30);
 
   /* VARIABLES END*/
 }
@@ -70,4 +79,9 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
 }
