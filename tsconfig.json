@@ -7,12 +7,12 @@
   ],
 
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true, // Enable strict mode
     "esModuleInterop": true,
-    "moduleResolution": "Node", // Ensure Node module resolution
+    "moduleResolution": "node", // Ensure Node module resolution
     "jsx": "react-jsx",
-    "types": ["node", "react", "react-dom", "react-router-dom"]
+    "types": ["node", "react", "react-dom", "react-router-dom", "firebase"],
   }
 }
