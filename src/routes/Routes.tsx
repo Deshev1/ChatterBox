@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 //Components
 import Home from "../views/landing/Landing";
+import Register from "../views/register/Register";
 
 function AllRoutes() {
   return (
@@ -13,7 +14,7 @@ function AllRoutes() {
       ></Route>
       <Route
         path="/register"
-        element={<Home />}
+        element={<Register />}
       ></Route>
       <Route
         path="/login"

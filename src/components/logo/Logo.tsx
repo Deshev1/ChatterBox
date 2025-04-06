@@ -4,12 +4,12 @@ import "./Logo.css";
 //Dependency
 import { useMemo } from "react";
 
-interface LogoProps {
+type LogoProps = {
   text?: string;
   size?: number;
   color?: string;
   handleClick?: () => void;
-}
+};
 
 function Logo({ text, size = 45, color = "black", handleClick }: LogoProps) {
   const logoSrc = useMemo(() => generateLogo(color, size), [color, size]);

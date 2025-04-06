@@ -5,7 +5,7 @@
 }
 
 .landing-info h1 {
-  font-size: 80px;
+  font-size: var(--font-heading-landing);
   text-transform: uppercase;
   line-height: 62px;
 }

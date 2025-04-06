@@ -1,0 +1,21 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container label {
+  margin-right: auto;
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+}
+
+.input-container input {
+  width: 326px;
+}
+
+.form-error {
+  color: red;
+  font-size: var(--font-caption);
+}

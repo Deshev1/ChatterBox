@@ -26,12 +26,12 @@
 }
 
 .button.small {
-  font-size: 14px;
+  font-size: var(--font-caption);
   padding: 6px 16px;
 }
 
 .button.large {
-  font-size: 18px;
+  font-size: var(--font-body);
   padding: 4px 24px;
   min-width: 160px;
 }

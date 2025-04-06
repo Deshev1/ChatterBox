@@ -16,6 +16,8 @@
   /* Fonts end*/
 
   /* Spacing */
+  --space-xxs: 4px;
+
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 32px;
@@ -28,7 +30,20 @@
   --radius-md: 16px;
   --radius-lg: 26px;
   --radius-circle: 50%;
-  /* Spacing end*/
+  /* Radius end*/
+
+  /* Font */
+  --font-caption: 1.28rem;
+  --font-body: 1.6rem;
+  --font-heading-landing: 8rem;
+
+  /* Unused fonts */
+  --font-heading-4: 2rem;
+  --font-heading-4: 2.5rem;
+  --font-heading-3: 3.13rem;
+  --font-heading-2: 3.91rem;
+  --font-heading-1: 4.48rem;
+  /* Font end*/
 
   /*Colors*/
   --main-color: rgb(105, 177, 105);
@@ -50,7 +65,7 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
+  font-size: var(--font-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: "Inter", sans-serif;
@@ -84,4 +99,8 @@ select {
 button {
   border: none;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }
