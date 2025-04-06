@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 //Components
 import Home from "../views/landing/Landing";
 import Register from "../views/register/Register";
+import Login from "../views/login/Login";
 
 function AllRoutes() {
   return (
@@ -18,7 +19,7 @@ function AllRoutes() {
       ></Route>
       <Route
         path="/login"
-        element={<Home />}
+        element={<Login />}
       ></Route>
       <Route
         path="/about"

@@ -12,6 +12,7 @@ import {
 
 //Components
 import Input from "../../components/input/Input";
+import PasswordInput from "../../components/password-input/PasswordInput";
 import Button from "../../components/button/Button";
 import StatCircle from "../landing/body/landing-stats/stat-circle/StatCircle";
 
@@ -22,13 +23,24 @@ type RegistrationParams = {
 };
 
 function Register() {
+  // Use setError to programmatically set and display an error in the form when the registration fails on firebase. Note: setError takes the object to which the error is assigned e.g. "username". There is a "root" object that assigns the error to no specific field, allowing you to display it somewhere else on the form in cases where e.g. there is a problem with the server.
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegistrationParams>();
 
-  const onSubmit: SubmitHandler<RegistrationParams> = function (data): void {
+  // Triggered only once there are no formErrors
+  const onSubmit: SubmitHandler<RegistrationParams> = async function (
+    data
+  ): Promise<void> {
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.log(data);
+        resolve();
+      }, 5000);
+    });
+
     console.log(data.email, data.password, data.username);
   };
 
@@ -56,7 +68,6 @@ function Register() {
         className="register-form"
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("asdf");
           //handleSubmit is a react-hook-form function that returns a function handling the event and returns a promise. We use void to explicitly ignore the returned promise as we have no asynchronous logic in the onSubmit handler.
           void handleSubmit(onSubmit)(e);
         }}
@@ -80,17 +91,22 @@ function Register() {
           <label>email</label>
         </Input>
 
-        <Input
+        <PasswordInput
           options={passwordOptions}
           error={errors.password}
         >
           <label>password</label>
-        </Input>
+        </PasswordInput>
         <p style={{ fontSize: "var(--font-caption" }}>
           Already registered? <Link to="/login">Click here.</Link>
         </p>
 
-        <Button type={"submit"}>Continue</Button>
+        <Button
+          type={"submit"}
+          disabled={isSubmitting}
+        >
+          Continue
+        </Button>
       </form>
     </div>
   );
