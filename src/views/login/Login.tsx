@@ -3,7 +3,7 @@ import "./Login.css";
 
 //Dependencies
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   validatePasswordLogin,
   validateEmail,
@@ -13,6 +13,7 @@ import {
 import PasswordInput from "../../components/password-input/PasswordInput";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
+import Logo from "../../components/logo/Logo";
 
 type LoginParams = {
   email: string;
@@ -26,6 +27,7 @@ function Login() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginParams>();
+  const navigate = useNavigate();
 
   const emailOptions = {
     ...register("email", {
@@ -55,6 +57,12 @@ function Login() {
 
   return (
     <div className="login-form-container">
+      <Logo
+        text={"chatterbox"}
+        color={"white"}
+        size={60}
+        handleClick={() => void navigate("/")}
+      />
       <form
         className="login-form"
         onSubmit={(e) => {

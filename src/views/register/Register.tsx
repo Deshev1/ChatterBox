@@ -3,7 +3,7 @@ import "./Register.css";
 
 //Dependency
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   validateUsername,
   validatePasswordRegister,
@@ -15,6 +15,7 @@ import Input from "../../components/input/Input";
 import PasswordInput from "../../components/password-input/PasswordInput";
 import Button from "../../components/button/Button";
 import StatCircle from "../landing/body/landing-stats/stat-circle/StatCircle";
+import Logo from "../../components/logo/Logo";
 
 type RegistrationParams = {
   username: string;
@@ -29,6 +30,7 @@ function Register() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<RegistrationParams>();
+  const navigate = useNavigate();
 
   // Triggered only once there are no formErrors
   const onSubmit: SubmitHandler<RegistrationParams> = async function (
@@ -64,6 +66,13 @@ function Register() {
 
   return (
     <div className="register-form-container">
+      <Logo
+        text={"chatterbox"}
+        color={"white"}
+        size={60}
+        handleClick={() => void navigate("/")}
+      />
+
       <form
         className="register-form"
         onSubmit={(e) => {
