@@ -14,13 +14,14 @@ import {
 import Input from "../../components/input/Input";
 import PasswordInput from "../../components/password-input/PasswordInput";
 import Button from "../../components/button/Button";
-import StatCircle from "../landing/body/landing-stats/stat-circle/StatCircle";
 import Logo from "../../components/logo/Logo";
+import UploadImage from "../../components/upload-image/UploadImage";
 
 type RegistrationParams = {
   username: string;
   email: string;
   password: string;
+  image: string;
 };
 
 function Register() {
@@ -28,9 +29,12 @@ function Register() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RegistrationParams>();
   const navigate = useNavigate();
+  const imageUrl = watch("image");
 
   // Triggered only once there are no formErrors
   const onSubmit: SubmitHandler<RegistrationParams> = async function (
@@ -40,7 +44,7 @@ function Register() {
       setTimeout(() => {
         console.log(data);
         resolve();
-      }, 5000);
+      }, 1000);
     });
 
     console.log(data.email, data.password, data.username);
@@ -82,9 +86,12 @@ function Register() {
         }}
       >
         <h1>Register</h1>
-        {/* Temporary placeholder for avatar upload */}
         <div style={{ margin: "var(--space-sm) 0px var(--space-sm) 0px" }}>
-          <StatCircle size={120}>Profile picture*</StatCircle>
+          {/* Pass setValue to UploadImage */}
+          <UploadImage
+            setValue={setValue}
+            imageUrl={imageUrl}
+          />
         </div>
         <Input
           options={usernameOptions}
@@ -106,7 +113,7 @@ function Register() {
         >
           <label>password</label>
         </PasswordInput>
-        <p style={{ fontSize: "var(--font-caption" }}>
+        <p style={{ fontSize: "var(--font-caption)" }}>
           Already registered? <Link to="/login">Click here.</Link>
         </p>
 

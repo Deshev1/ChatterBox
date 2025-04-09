@@ -1,0 +1,11 @@
+.image-preview {
+  border: 1px solid var(--main-color);
+  border-radius: var(--radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}

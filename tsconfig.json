@@ -13,6 +13,13 @@
     "esModuleInterop": true,
     "moduleResolution": "node", // Ensure Node module resolution
     "jsx": "react-jsx",
-    "types": ["node", "react", "react-dom", "react-router-dom", "firebase"],
+    "types": [
+      "node",
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "firebase",
+      "react-firebase-hooks"
+    ]
   }
 }
