@@ -1,5 +1,5 @@
 .image-preview {
-  border: 1px solid var(--main-color);
+  border: 1px solid black;
   border-radius: var(--radius-circle);
   display: flex;
   align-items: center;
@@ -8,4 +8,9 @@
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  padding: 20px;
+}
+
+.image-container {
+  margin-top: var(--space-sm);
 }

@@ -1,22 +1,23 @@
 //CSS
 import "./UploadImage.css";
 
-function UploadImage({ setValue, imageUrl, size = 120 }) {
+function UploadImage({ clearErrors, setValue, imageUrl, error, size = 120 }) {
   const handleFileChange = (e) => {
-    const file = e.target.files[0]; // Get the first file from the FileList
+    const file = e.target.files[0];
     if (file) {
-      console.log("Uploaded file:", file); // Log the uploaded file
+      console.log("Uploaded file:", file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        console.log("File content (base64):", reader.result); // Log the base64 content
-        setValue("image", reader.result); // Update the "image" field in react-hook-form
+        console.log("File content (base64):", reader.result);
+        setValue("image", reader.result);
+        clearErrors("image");
       };
-      reader.readAsDataURL(file); // Read the file as a base64 string
+      reader.readAsDataURL(file);
     }
   };
 
   return (
-    <>
+    <div className="image-container">
       <div
         className="image-preview"
         style={{
@@ -27,17 +28,34 @@ function UploadImage({ setValue, imageUrl, size = 120 }) {
         onClick={() => document.getElementById("file-upload").click()}
       >
         {!imageUrl && (
-          <p style={{ fontSize: "var(--font-caption)" }}>Upload image</p>
+          <p
+            style={{
+              fontSize: "var(--font-caption)",
+              fontStyle: "var(--logo-font)",
+            }}
+          >
+            Upload avatar
+          </p>
         )}
       </div>
       <input
         id="file-upload"
         type="file"
         accept="image/*"
-        onChange={handleFileChange} // Handle file selection
+        onChange={handleFileChange}
         style={{ display: "none" }}
       />
-    </>
+      {error ? (
+        <p className="form-error">{error.message}</p>
+      ) : (
+        <p
+          className="label"
+          style={{ opacity: "0" }}
+        >
+          e
+        </p>
+      )}
+    </div>
   );
 }
 

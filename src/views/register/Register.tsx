@@ -31,12 +31,13 @@ function Register() {
     handleSubmit,
     setValue,
     watch,
+    clearErrors,
     formState: { errors, isSubmitting },
   } = useForm<RegistrationParams>();
   const navigate = useNavigate();
+
   const imageUrl = watch("image");
 
-  // Triggered only once there are no formErrors
   const onSubmit: SubmitHandler<RegistrationParams> = async function (
     data
   ): Promise<void> {
@@ -68,6 +69,12 @@ function Register() {
     }),
   };
 
+  const imageOptions = {
+    ...register("image", {
+      required: "Image is required.",
+    }),
+  };
+
   return (
     <div className="register-form-container">
       <Logo
@@ -86,33 +93,29 @@ function Register() {
         }}
       >
         <h1>Register</h1>
-        <div style={{ margin: "var(--space-sm) 0px var(--space-sm) 0px" }}>
-          {/* Pass setValue to UploadImage */}
-          <UploadImage
-            setValue={setValue}
-            imageUrl={imageUrl}
-          />
-        </div>
+        <UploadImage
+          clearErrors={clearErrors}
+          setValue={setValue}
+          imageUrl={imageUrl}
+          error={errors.image}
+        />
         <Input
+          name="username"
           options={usernameOptions}
           error={errors.username}
-        >
-          <label>username</label>
-        </Input>
+        ></Input>
 
         <Input
+          name="email"
           options={emailOptions}
           error={errors.email}
-        >
-          <label>email</label>
-        </Input>
+        ></Input>
 
         <PasswordInput
+          name="password"
           options={passwordOptions}
           error={errors.password}
-        >
-          <label>password</label>
-        </PasswordInput>
+        ></PasswordInput>
         <p style={{ fontSize: "var(--font-caption)" }}>
           Already registered? <Link to="/login">Click here.</Link>
         </p>

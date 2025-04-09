@@ -27,3 +27,14 @@
 .register-form button {
   margin-top: 13px;
 }
+
+.label {
+  margin-right: auto;
+  font-size: var(--font-caption);
+  text-transform: uppercase;
+}
+
+.form-error {
+  color: red;
+  font-size: var(--font-caption);
+}

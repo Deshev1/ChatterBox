@@ -9,16 +9,16 @@ import { useState } from "react";
 function PasswordInput({
   options,
   error,
-  children,
+  name,
 }: {
   options: object;
   error: { message?: string } | undefined;
-  children: React.ReactNode;
+  name: string;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <div className="input-container">
-      {children}
+      <label className="label">{name}</label>
       <div className="input-field">
         <input
           {...options}

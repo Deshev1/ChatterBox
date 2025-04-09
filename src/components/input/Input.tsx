@@ -2,17 +2,17 @@
 import "./Input.css";
 
 function Input({
+  name,
   options,
   error,
-  children,
 }: {
+  name: string;
   options: object;
   error: { message?: string } | undefined;
-  children: React.ReactNode;
 }) {
   return (
     <div className="input-container">
-      {children}
+      <label className="label">{name}</label>
       <input
         {...options}
         type="text"
