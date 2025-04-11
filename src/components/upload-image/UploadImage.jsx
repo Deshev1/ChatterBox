@@ -5,10 +5,8 @@ function UploadImage({ clearErrors, setValue, imageUrl, error, size = 120 }) {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log("Uploaded file:", file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        console.log("File content (base64):", reader.result);
         setValue("image", reader.result);
         clearErrors("image");
       };

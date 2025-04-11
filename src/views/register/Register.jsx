@@ -14,8 +14,10 @@ import {
   getUserDataByUsername,
   createUserHandle,
 } from "../../services/user.service";
+import { useContext, useState } from "react";
 
 //Components
+import { AppContext } from "../../context/AppContext";
 import Input from "../../components/input/Input";
 import PasswordInput from "../../components/password-input/PasswordInput";
 import Button from "../../components/button/Button";
@@ -29,16 +31,19 @@ function Register() {
     handleSubmit,
     setValue,
     watch,
+    setError,
     clearErrors,
     formState: { errors, isSubmitting },
   } = useForm();
+  const { handleLogout } = useContext(AppContext);
+  const [success, setSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const imageUrl = watch("image");
 
   const onSubmit = async function (data) {
     try {
-      //Check if user already exists
       const snapshot = await getUserDataByUsername(data.username);
       if (snapshot.exists()) {
         throw new Error(`Username @${data.username} has already been taken!`);
@@ -52,18 +57,18 @@ function Register() {
         username: data.username,
         uid: userCredentials.user.uid,
         email: userCredentials.user.email,
-        phoneNumber: data.phoneNumber,
-        profilePicture: data.profilePicture,
+        profilePicture: data.image,
       });
 
       //Logout user (firebase automatically logs users in)
-      onLogout();
-
+      await handleLogout();
       setSuccess(true);
     } catch (e) {
-      setErrors({ ...errors, message: e.message });
-    } finally {
-      setLoading(false);
+      setError("root", {
+        type: "error",
+        message: e.message,
+        shouldFocus: true,
+      });
     }
   };
 
@@ -91,6 +96,22 @@ function Register() {
     }),
   };
 
+  if (success)
+    return (
+      <div className="register-form-container">
+        <Logo
+          text={"chatterbox"}
+          color={"white"}
+          size={60}
+          handleClick={() => void navigate("/")}
+        />
+
+        <div className="register-form">
+          <h1>Success!</h1>
+        </div>
+      </div>
+    );
+
   return (
     <div className="register-form-container">
       <Logo
@@ -105,10 +126,11 @@ function Register() {
         onSubmit={(e) => {
           e.preventDefault();
           //handleSubmit is a react-hook-form function that returns a function handling the event and returns a promise. We use void to explicitly ignore the returned promise as we have no asynchronous logic in the onSubmit handler.
-          void handleSubmit(onSubmit)(e);
+          handleSubmit(onSubmit)(e);
         }}
       >
         <h1>Register</h1>
+        {errors.root && <p className="form-error">{errors.root.message}</p>}
         <UploadImage
           clearErrors={clearErrors}
           setValue={setValue}
@@ -217,7 +239,7 @@ export default Register;
 //       });
 
 //       //Logout user (firebase automatically logs users in)
-//       onLogout();
+//       handleLogout();
 
 //       setSuccess(true);
 //     } catch (e) {

@@ -12,6 +12,8 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyCEwkYKkR_L2LcLhW53dlb4Dxhrjy9iulY",
   authDomain: "chatterbox-3fca9.firebaseapp.com",
+  databaseURL:
+    "https://chatterbox-3fca9-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "chatterbox-3fca9",
   storageBucket: "chatterbox-3fca9.firebasestorage.app",
   messagingSenderId: "847688419457",

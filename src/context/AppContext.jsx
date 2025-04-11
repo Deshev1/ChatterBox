@@ -23,10 +23,10 @@ export function AppContextProvider({ children }) {
     setAppState({ user });
   }
 
-  function handleLogout() {
-    logoutUser().then(() => {
-      setAppState({ user: null, userData: null });
-    });
+  async function handleLogout() {
+    await logoutUser();
+    setAppState({ user: null, userData: null });
+    await new Promise((resolve) => setTimeout(resolve, 0));
   }
 
   return (
