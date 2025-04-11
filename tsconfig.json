@@ -7,12 +7,16 @@
   ],
 
   "compilerOptions": {
+    "allowJs": true,
+    "noEmitOnError": false,
     "target": "esnext",
     "module": "esnext",
     "strict": true, // Enable strict mode
     "esModuleInterop": true,
     "moduleResolution": "node", // Ensure Node module resolution
     "jsx": "react-jsx",
+    "checkJs": false, // Disable type-checking for JavaScript files
+    "skipLibCheck": true, // Skip type-checking for libraries
     "types": [
       "node",
       "react",
