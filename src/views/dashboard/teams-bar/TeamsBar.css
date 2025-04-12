@@ -1,0 +1,44 @@
+.teams-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px 10px 10px;
+  width: 60px;
+  background-color: rgba(0, 128, 0, 0.493);
+}
+.add-channel {
+  background-color: transparent;
+}
+
+.submit-input {
+  margin-top: 20px;
+}
+
+.teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.teams-list p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.team-logo {
+  width: 60px;
+  min-height: 61px;
+
+  max-height: 61px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid gainsboro;
+  background-color: rgba(0, 128, 0, 0.682);
+}

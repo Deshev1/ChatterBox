@@ -49,6 +49,9 @@
   --main-color: rgb(105, 177, 105);
   --main-color-drk: rgb(30, 121, 30);
 
+  /* Animations */
+  --transition: opacity 0.3s ease-in-out;
+
   /* VARIABLES END*/
 }
 
