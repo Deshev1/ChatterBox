@@ -3,12 +3,18 @@ import "./Avatar.css";
 
 import defaultTeam from "../../assets/default-team.svg";
 
-function Avatar({ imageUrl = defaultTeam, tooltip, size = 45, handleClick }) {
+function Avatar({
+  imageUrl = defaultTeam,
+  tooltip,
+  size = 45,
+  handleClick,
+  status,
+}) {
   return (
     <div
       className="avatar-container"
       onClick={handleClick}
-      style={tooltip && { cursor: "pointer" }}
+      style={(handleClick || tooltip) && { cursor: "pointer" }}
     >
       <img
         src={imageUrl}
@@ -17,6 +23,7 @@ function Avatar({ imageUrl = defaultTeam, tooltip, size = 45, handleClick }) {
         style={{ height: `${size}px`, width: `${size}px` }}
       />
       {tooltip && <div className="tooltip">{tooltip}</div>}
+      {status && <div className={`status-icon ${status}`}></div>}
     </div>
   );
 }

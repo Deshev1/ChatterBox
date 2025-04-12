@@ -20,6 +20,7 @@
   top: 50%;
   transform: translateY(-50%);
   visibility: hidden;
+  white-space: nowrap;
 }
 
 .avatar-container:hover .tooltip {
@@ -36,4 +37,26 @@
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
   border-right: 6px solid var(--main-color);
+}
+
+.status-icon {
+  position: absolute;
+  width: var(--space-xs);
+  height: var(--space-xs);
+  bottom: 2px;
+  right: 2px;
+  border-radius: var(--radius-circle);
+  box-shadow: 0 0 0 2px white;
+}
+
+.online {
+  background-color: green;
+}
+
+.busy {
+  background-color: red;
+}
+
+.offline {
+  background-color: grey;
 }
