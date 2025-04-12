@@ -44,7 +44,10 @@ function TeamsBar() {
 
   return (
     <div className="teams-bar">
-      <Logo handleClick={() => navigate(`/${user.uid}/friends/all`)} />
+      <Logo
+        size={40}
+        handleClick={() => navigate(`/${user.uid}/friends/all`)}
+      />
       <div className="teams-list">
         {teamsDetails &&
           teamsDetails.map((team) => {
@@ -61,6 +64,9 @@ function TeamsBar() {
         handleClick={() => navigate(`/${user.uid}/create-team`)}
         imageUrl={plusSign}
         tooltip={"Add team"}
+        hover={true}
+        size={40}
+        padding={10}
       />
     </div>
   );

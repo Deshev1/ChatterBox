@@ -84,7 +84,7 @@ function ChatsBar() {
     <div className="chats-bar">
       <UserHeader></UserHeader>
       <div className="search-bar"></div>
-      <div className={`chats-container`}>
+      <div className={`chats-list`}>
         {chats &&
           chats.map((chat) => {
             return (
@@ -104,7 +104,7 @@ function ChatsBar() {
       </div>
 
       {!isInDMs && (
-        <div className="chatbar-btns">
+        <div className="team-actions">
           <Avatar
             handleClick={() => navigate(`/${teamId}/add-members`)}
             imageUrl={userPlus}
