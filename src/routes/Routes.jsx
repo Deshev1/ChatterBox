@@ -27,8 +27,8 @@ function AllRoutes() {
         element={<Home />}
       ></Route>
       <Route
-        path="/dashboard"
-        element={<Dashboard />}
+        path="/:teamId/friends/:filter"
+        element={<Dashboard isFriendsWindow={true} />}
       ></Route>
     </Routes>
   );

@@ -27,7 +27,6 @@ function ChatPreview({ chat, isActive, setActiveChat }) {
       <Avatar
         status={status}
         imageUrl={chat.imageUrl}
-        type="chat-image"
         userUid={chat.userUid}
       ></Avatar>
       <div className="chat-details">

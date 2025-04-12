@@ -1,4 +1,12 @@
-import { get, set, query, ref, orderByChild, equalTo } from "firebase/database";
+import {
+  get,
+  set,
+  query,
+  ref,
+  orderByChild,
+  equalTo,
+  onValue,
+} from "firebase/database";
 import { db } from "../config/firebase-config";
 
 export const createUserHandle = ({ username, uid, email, profilePicture }) => {

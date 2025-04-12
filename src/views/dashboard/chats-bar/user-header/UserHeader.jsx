@@ -21,23 +21,40 @@ import Dropdown from "../../../../components/dropdown/Dropdown";
 import Avatar from "../../../../components/avatar/Avatar";
 
 function UserHeader() {
-  const { user, userData } = useContext(AppContext);
+  const { user, userData, setContext } = useContext(AppContext);
   const [status, setStatus] = useState(userData.details.status || "online");
   const { filter } = useParams();
 
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     updateUserStatus(user.uid, status);
+  useEffect(() => {
+    const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
+      setStatus(statusFromFirebase);
+    });
 
-  //     const unsubscribe = subscribeToStatus(user.uid, setStatus);
+    return () => {
+      unsubscribe();
+    };
+  }, [user.uid]);
 
-  //     return () => {
-  //       unsubscribe();
-  //     };
-  //   }, [status]);
+  const handleStatus = (option) => {
+    setStatus(option);
 
-  const handleStatus = (option) => setStatus(option);
+    setContext((prev) => ({
+      ...prev,
+      userData: {
+        ...prev.userData,
+        status: option,
+      },
+    }));
+
+    localStorage.setItem(
+      "userData",
+      JSON.stringify({ ...userData, status: option })
+    );
+
+    updateUserStatus(user.uid, option);
+  };
 
   return (
     <div className="user-header">

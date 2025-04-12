@@ -29,7 +29,7 @@ function Login() {
     formState: { errors, isSubmitting },
   } = useForm();
   const navigate = useNavigate();
-  const { setContext } = useContext(AppContext);
+  const { user, setContext } = useContext(AppContext);
 
   const emailOptions = {
     ...register("email", {
@@ -59,7 +59,7 @@ function Login() {
 
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      navigate("/dashboard");
+      navigate(`/${user.uid}/friends/all`);
     } catch (e) {
       setError(
         "root",

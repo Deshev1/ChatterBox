@@ -3,17 +3,23 @@ import "./Dashboard.css";
 
 //Dependencies
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //Components
 import { AppContext } from "../../context/AppContext";
 import TeamsBar from "./teams-bar/TeamsBar";
 import ChatsBar from "./chats-bar/ChatsBar";
-import Button from "../../components/button/Button";
 
-function Dashboard() {
+function Dashboard({
+  isCreateChat,
+  isCreateTeam,
+  isFriendsWindow,
+  isChatWindow,
+  isAddMembers,
+}) {
   const { user, userData, handleLogout } = useContext(AppContext);
   const navigate = useNavigate();
+  const { teamId, chatId, filter } = useParams();
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -21,10 +27,16 @@ function Dashboard() {
 
   return (
     <div className="app-container">
-      <TeamsBar />
-      <ChatsBar />
-      {/* <h1>{`Hello ${userData?.details.username}`}</h1>
-      <Button handleClick={handleLogout}>Logout</Button> */}
+      <div className="app-container">
+        <TeamsBar />
+        <ChatsBar />
+        {/* {isFriendsWindow && <FriendsWindow />} */}
+        {/* {isCreateTeam && <CreateTeam />} */}
+        {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}
+        {/* {isCreateChat && !(user.uid === teamId) && <CreateTeamChat />} */}
+        {/* {isChatWindow && <ChatWindow></ChatWindow>} */}
+        {/* {isAddMembers && <AddMembers></AddMembers>} */}
+      </div>
     </div>
   );
 }
