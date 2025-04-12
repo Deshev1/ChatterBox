@@ -4,7 +4,7 @@ import "./Avatar.css";
 function Avatar({
   imageUrl,
   tooltip,
-  size = 45,
+  size = 40,
   padding = 0,
   handleClick,
   status,

@@ -23,12 +23,13 @@
   font-weight: bold;
   transition: var(--transition);
   background-color: var(--main-color);
-  left: calc(100% + var(--space-xs));
+  left: calc(100% + var(--space-sm));
   top: 50%;
   transform: translateY(-50%);
   visibility: hidden;
   opacity: 0;
   white-space: nowrap;
+  z-index: 1;
 }
 
 .avatar-container:hover .tooltip {

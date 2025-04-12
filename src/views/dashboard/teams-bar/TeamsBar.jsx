@@ -63,7 +63,6 @@ function TeamsBar() {
       <Avatar
         handleClick={() => navigate(`/${user.uid}/create-team`)}
         imageUrl={plusSign}
-        tooltip={"Add team"}
         hover={true}
         size={40}
         padding={10}

@@ -4,7 +4,6 @@
   align-items: center;
   gap: 5px;
   padding: var(--space-xs);
-  padding-top: calc(var(--space-xs) + 6px);
   width: 60px;
 }
 
