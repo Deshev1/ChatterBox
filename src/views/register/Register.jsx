@@ -108,6 +108,8 @@ function Register() {
 
         <div className="register-form">
           <h1>Success!</h1>
+          <p>Your account has been creates successfully!</p>
+          <Button handleClick={() => navigate("/login")}>Login</Button>
         </div>
       </div>
     );

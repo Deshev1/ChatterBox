@@ -39,7 +39,7 @@ function UploadImage({ clearErrors, setValue, imageUrl, error, size = 120 }) {
       <input
         id="file-upload"
         type="file"
-        accept="image/*"
+        accept="image/png, image/jpeg"
         onChange={handleFileChange}
         style={{ display: "none" }}
       />
