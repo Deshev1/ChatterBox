@@ -9,6 +9,7 @@ function Avatar({
   size = 45,
   handleClick,
   status,
+  hover = false,
 }) {
   return (
     <div
@@ -19,7 +20,7 @@ function Avatar({
       <img
         src={imageUrl}
         alt="avatar"
-        className="avatar-image"
+        className={`avatar-image ${hover ? "hover" : ""}`}
         style={{ height: `${size}px`, width: `${size}px` }}
       />
       {tooltip && <div className="tooltip">{tooltip}</div>}

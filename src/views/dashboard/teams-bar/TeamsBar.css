@@ -5,7 +5,7 @@
   gap: 5px;
   padding: var(--space-xs);
   width: 60px;
-  background-color: rgba(0, 128, 0, 0.493);
+  background-color: var(--main-color);
 }
 
 .teams-list {

@@ -32,3 +32,26 @@ export const subscribeToTeams = function (userUid, callback) {
 
   return unsubscribe;
 };
+
+export const leaveTeam = async function (teamUid, userUid) {
+  const teamRef = ref(db, `teams/${teamUid}`);
+
+  const teamMembersRef = ref(db, `teams/${teamUid}/members`);
+  const userRef = ref(db, `users/${userUid}/teams`);
+
+  await Promise.all([
+    update(teamMembersRef, { [userUid]: null }),
+    update(userRef, { [teamUid]: null }),
+  ]);
+
+  const teamMembersSnapshot = await get(teamMembersRef);
+
+  //If no members remove team
+  if (!teamMembersSnapshot.exists()) {
+    await set(teamRef, null);
+    const teamsCountRef = ref(db, "teams/teamsCount");
+    await runTransaction(teamsCountRef, (currentCount) => {
+      return (currentCount || 0) - 1;
+    });
+  }
+};

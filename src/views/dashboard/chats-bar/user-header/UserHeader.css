@@ -1,0 +1,44 @@
+.user-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid gainsboro;
+  border-top: none;
+
+  background-color: rgba(0, 128, 0, 0.682);
+}
+
+.user-header-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+}
+
+.user-btns {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.pending-friend-requests-bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  height: 16px;
+  border: 1px solid black;
+  border-radius: 50%;
+  top: -6px;
+  left: -6px;
+  font-size: 12px;
+  background-color: red;
+}

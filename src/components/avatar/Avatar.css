@@ -3,6 +3,13 @@
   width: fit-content;
   position: relative;
 }
+
+.avatar-image.hover:hover {
+  transition: 0.3s;
+  transform: scale(1.15);
+  border-radius: 10px;
+}
+
 .avatar-image {
   background-color: var(--main-color);
   border-radius: var(--radius-circle);
@@ -20,6 +27,7 @@
   top: 50%;
   transform: translateY(-50%);
   visibility: hidden;
+  opacity: 0;
   white-space: nowrap;
 }
 

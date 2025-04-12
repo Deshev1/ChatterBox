@@ -6,12 +6,17 @@ export const createUserHandle = ({ username, uid, email, profilePicture }) => {
     username,
     email,
     profilePicture,
+    status: "offline",
     createdOn: Date.now(),
   });
 };
 
 export const getUserDataByUid = (uid) => {
   return get(ref(db, `users/${uid}`));
+};
+
+export const getUserDetailsByUid = (uid) => {
+  return get(ref(db, `users/${uid}/details`));
 };
 
 export const getUserDataByUsername = (username) => {
@@ -23,9 +28,18 @@ export const getUserDataByUsername = (username) => {
   );
   return get(userQuery);
 };
+export const subscribeToStatus = function (uid, setFunction) {
+  const reference = ref(db, `/users/${uid}/details/status`);
 
-export const getUserDetailsByUid = (uid) => {
-  return get(ref(db, `users/${uid}/details`));
+  const unsubscribe = onValue(reference, (snapshot) => {
+    if (snapshot.exists()) setFunction(snapshot.val());
+  });
+
+  return unsubscribe;
+};
+
+export const updateUserStatus = (uid, status) => {
+  return set(ref(db, `users/${uid}/details/status`), status);
 };
 
 // TS

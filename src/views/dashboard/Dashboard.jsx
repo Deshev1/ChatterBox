@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 //Components
 import { AppContext } from "../../context/AppContext";
 import TeamsBar from "./teams-bar/TeamsBar";
+import ChatsBar from "./chats-bar/ChatsBar";
 import Button from "../../components/button/Button";
 
 function Dashboard() {
@@ -21,7 +22,7 @@ function Dashboard() {
   return (
     <div className="app-container">
       <TeamsBar />
-      {/* <ChatsBar /> */}
+      <ChatsBar />
       {/* <h1>{`Hello ${userData?.details.username}`}</h1>
       <Button handleClick={handleLogout}>Logout</Button> */}
     </div>

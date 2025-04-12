@@ -1,0 +1,28 @@
+.chat-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: 40px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: greenyellow;
+}
+
+.chat-container.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.chat-container:hover {
+  background-color: grey;
+}
+
+.chat-name {
+  font-size: 12px;
+}
+
+.chat-status {
+  font-size: 10px;
+}
