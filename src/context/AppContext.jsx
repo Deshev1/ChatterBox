@@ -1,9 +1,8 @@
 //Dependency
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext } from "react";
 import { auth } from "../config/firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { logoutUser } from "../services/auth.service";
-import { getUserDataByUid } from "../services/user.service";
 
 export const AppContext = createContext({
   user: null,
@@ -13,9 +12,13 @@ export const AppContext = createContext({
 });
 
 export function AppContextProvider({ children }) {
-  const [appState, setAppState] = useState({
-    user: null,
-    userData: null,
+  const [appState, setAppState] = useState(() => {
+    const storedUserData = localStorage.getItem("userData");
+
+    return {
+      user: null,
+      userData: storedUserData ? JSON.parse(storedUserData) : null,
+    };
   });
 
   const [user, loading] = useAuthState(auth);
@@ -29,29 +32,9 @@ export function AppContextProvider({ children }) {
   async function handleLogout() {
     await logoutUser();
     setAppState({ user: null, userData: null });
+    localStorage.removeItem("userData");
     await new Promise((resolve) => setTimeout(resolve, 0));
   }
-
-  function updateUserData() {
-    getUserDataByUid(user.uid)
-      .then((snapshot) => {
-        if (!snapshot.exists()) {
-          throw new Error("Couldn't get user data.");
-        }
-
-        setAppState({
-          ...appState,
-          userData: { ...snapshot.val() },
-        });
-      })
-      .catch((e) => alert(e.message));
-  }
-
-  useEffect(() => {
-    if (user === null) return;
-
-    updateUserData();
-  }, [user]);
 
   return (
     <AppContext
@@ -67,6 +50,27 @@ export function AppContextProvider({ children }) {
     </AppContext>
   );
 }
+
+// function updateUserData() {
+//   getUserDataByUid(user.uid)
+//     .then((snapshot) => {
+//       if (!snapshot.exists()) {
+//         throw new Error("Couldn't get user data.");
+//       }
+
+//       setAppState({
+//         ...appState,
+//         userData: { ...snapshot.val() },
+//       });
+//     })
+//     .catch((e) => alert(e.message));
+// }
+
+// useEffect(() => {
+//   if (user === null) return;
+
+//   updateUserData();
+// }, [user]);
 
 // type appState = {
 //   user: User | undefined | null;

@@ -51,9 +51,13 @@ function Login() {
         throw new Error("Couldn't get user data.");
       }
 
+      const userData = { ...snapshot.val() };
+
       setContext((prev) => {
-        return { ...prev, userData: { ...snapshot.val() } };
+        return { ...prev, userData };
       });
+
+      localStorage.setItem("userData", JSON.stringify(userData));
 
       navigate("/dashboard");
     } catch (e) {
