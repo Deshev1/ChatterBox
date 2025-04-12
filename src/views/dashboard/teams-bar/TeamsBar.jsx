@@ -1,7 +1,7 @@
 //CSS
 import "./TeamsBar.css";
-import teamLogo from "../../../assets/default-team.svg";
-import plusSign from "../../../assets/plus.svg";
+import defaultTeam from "../../../assets/icons/defaultTeam.svg";
+import plusSign from "../../../assets/icons/plusSign.svg";
 
 // Component imports
 import Avatar from "../../../components/avatar/Avatar";
@@ -51,7 +51,7 @@ function TeamsBar() {
             return (
               <Avatar
                 key={team.id}
-                imageUrl={team?.imageUrl || teamLogo}
+                imageUrl={team?.imageUrl || defaultTeam}
                 onClick={() => handleTeamClick(team)}
               />
             );

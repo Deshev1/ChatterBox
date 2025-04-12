@@ -1,12 +1,9 @@
 //Misc imports
 import "./ChatsBar.css";
-import plusSign from "../../../assets/plus.svg";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
-
-import chatLogo from "../../../assets/default-chat.svg";
+import plusSign from "../../../assets/icons/plusSign.svg";
+import openDoor from "../../../assets/icons/openDoor.svg";
+import userPlus from "../../../assets/icons/userPlus.svg";
+import defaultChat from "../../../assets/icons/defaultChat.svg";
 
 //Dependency imports
 import { useEffect, useState, useContext } from "react";
@@ -95,7 +92,7 @@ function ChatsBar() {
                 key={chat.id}
                 chat={{
                   name: chat.name,
-                  imageUrl: chat.imageUrl || chatLogo,
+                  imageUrl: chat.imageUrl || defaultChat,
                   status: chat?.status,
                   userUid: chat?.userUid,
                 }}
@@ -108,24 +105,29 @@ function ChatsBar() {
 
       {!isInDMs && (
         <div className="chatbar-btns">
-          <FontAwesomeIcon
-            onClick={() => navigate(`/${teamId}/add-members`)}
-            icon={faUserPlus}
-            className="add-members-btn"
+          <Avatar
+            handleClick={() => navigate(`/${teamId}/add-members`)}
+            imageUrl={userPlus}
+            size={40}
+            padding={8}
+            hover={true}
           />
           <Avatar
             handleClick={() => navigate(`/${teamId}/create-chat`)}
             imageUrl={plusSign}
             size={40}
+            padding={8}
             hover={true}
           />
-          <FontAwesomeIcon
-            onClick={() => {
+          <Avatar
+            handleClick={() => {
               leaveTeam(teamId, user.uid);
               navigate(`/home`);
             }}
-            icon={faDoorOpen}
-            className="add-members-btn"
+            imageUrl={openDoor}
+            size={40}
+            padding={8}
+            hover={true}
           />
         </div>
       )}
