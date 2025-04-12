@@ -64,11 +64,14 @@ function Register() {
       await handleLogout();
       setSuccess(true);
     } catch (e) {
-      setError("root", {
-        type: "error",
-        message: e.message,
-        shouldFocus: true,
-      });
+      setError(
+        "root",
+        {
+          type: "string",
+          message: e.message,
+        },
+        { shouldFocus: true }
+      );
     }
   };
 

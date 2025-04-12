@@ -8,8 +8,13 @@ import {
   validatePasswordLogin,
   validateEmail,
 } from "../../utils/formValidations";
+import { getUserDataByUid } from "../../services/user.service";
+import { loginUser } from "../../services/auth.service";
+import { useContext } from "react";
 
 //Components
+import { AppContext } from "../../context/AppContext";
+
 import PasswordInput from "../../components/password-input/PasswordInput";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
@@ -20,9 +25,11 @@ function Login() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm();
   const navigate = useNavigate();
+  const { setContext } = useContext(AppContext);
 
   const emailOptions = {
     ...register("email", {
@@ -36,16 +43,26 @@ function Login() {
     }),
   };
 
-  // Triggered only once there are no formErrors
   const onSubmit = async function (data) {
-    await new ((resolve) => {
-      setTimeout(() => {
-        console.log(data);
-        resolve();
-      }, 5000);
-    })();
+    try {
+      const credentials = await loginUser(data.email, data.password);
+      const snapshot = await getUserDataByUid(credentials.user.uid);
+      if (!snapshot.exists()) {
+        throw new Error("Couldn't get user data.");
+      }
 
-    console.log(data.email, data.password);
+      setContext((prev) => {
+        return { ...prev, userData: { ...snapshot.val() } };
+      });
+
+      navigate("/dashboard");
+    } catch (e) {
+      setError(
+        "root",
+        { type: "string", message: e.message },
+        { shouldFocus: true }
+      );
+    }
   };
 
   return (
@@ -65,7 +82,7 @@ function Login() {
         }}
       >
         <h1>Login</h1>
-
+        {errors.root && <p className="form-error">{errors.root.message}</p>}
         <Input
           options={emailOptions}
           error={errors.email}

@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../views/landing/Landing";
 import Register from "../views/register/Register";
 import Login from "../views/login/Login";
+import Dashboard from "../views/dashboard/Dashboard";
 
 function AllRoutes() {
   return (
@@ -24,6 +25,10 @@ function AllRoutes() {
       <Route
         path="/about"
         element={<Home />}
+      ></Route>
+      <Route
+        path="/dashboard"
+        element={<Dashboard />}
       ></Route>
     </Routes>
   );
