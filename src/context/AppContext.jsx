@@ -50,29 +50,3 @@ export function AppContextProvider({ children }) {
     </AppContext>
   );
 }
-
-// function updateUserData() {
-//   getUserDataByUid(user.uid)
-//     .then((snapshot) => {
-//       if (!snapshot.exists()) {
-//         throw new Error("Couldn't get user data.");
-//       }
-
-//       setAppState({
-//         ...appState,
-//         userData: { ...snapshot.val() },
-//       });
-//     })
-//     .catch((e) => alert(e.message));
-// }
-
-// useEffect(() => {
-//   if (user === null) return;
-
-//   updateUserData();
-// }, [user]);
-
-// type appState = {
-//   user: User | undefined | null;
-//   userData?: User | undefined | null;
-// };
