@@ -21,20 +21,20 @@
   border-radius: var(--radius-sm);
   padding: var(--space-xs);
   font-weight: bold;
-  transition: var(--transition);
   background-color: var(--main-color);
   left: calc(100% + var(--space-sm));
   top: 50%;
-  transform: translateY(-50%);
-  visibility: hidden;
+  transform: translateY(-50%) translateX(-20px);
   opacity: 0;
   white-space: nowrap;
   z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 }
 
 .avatar-container:hover .tooltip {
-  visibility: visible;
   opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .tooltip::before {

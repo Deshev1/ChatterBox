@@ -55,9 +55,12 @@ function TeamsBar() {
           teamsDetails.map((team) => {
             return (
               <Avatar
+                handleClick={() => console.log("hi")}
                 key={team.id}
+                tooltip={team.name}
                 imageUrl={team?.imageUrl || defaultTeam}
                 onClick={() => handleTeamClick(team)}
+                hover={true}
               />
             );
           })}
@@ -66,7 +69,6 @@ function TeamsBar() {
         handleClick={() => navigate(`/${user.uid}/create-team`)}
         imageUrl={plusSign}
         hover={true}
-        size={40}
         padding={10}
       />
     </div>
