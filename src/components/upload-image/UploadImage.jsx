@@ -7,8 +7,8 @@ function UploadImage({ clearErrors, setValue, imageUrl, error, size = 120 }) {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setValue("image", reader.result);
-        clearErrors("image");
+        setValue("avatar", reader.result);
+        clearErrors("avatar");
       };
       reader.readAsDataURL(file);
     }

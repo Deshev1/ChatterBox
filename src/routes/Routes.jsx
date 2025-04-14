@@ -30,6 +30,10 @@ function AllRoutes() {
         path="/:teamId/friends/:filter"
         element={<Dashboard isFriendsWindow={true} />}
       ></Route>
+      <Route
+        path="/:teamId/create-team"
+        element={<Dashboard isCreateTeam={true} />}
+      ></Route>
     </Routes>
   );
 }

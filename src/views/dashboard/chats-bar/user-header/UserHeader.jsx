@@ -81,7 +81,7 @@ function UserHeader() {
         <Avatar
           status={status}
           type={"user"}
-          imageUrl={userData.details.profilePicture || "default-avatar.png"}
+          imageUrl={userData.details.avatar || "default-avatar.png"}
         ></Avatar>
         <div className="user-status">
           <p className="username">{userData.details.username}</p>

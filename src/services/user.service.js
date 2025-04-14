@@ -10,11 +10,11 @@ import {
 } from "firebase/database";
 import { db } from "../config/firebase-config";
 
-export const createUserHandle = ({ username, uid, email, profilePicture }) => {
+export const createUserHandle = ({ username, uid, email, avatar }) => {
   return set(ref(db, `users/${uid}/details`), {
     username,
     email,
-    profilePicture,
+    avatar,
     status: "offline",
     createdOn: Date.now(),
   });
@@ -72,19 +72,19 @@ export const updateUserStatus = (uid, status) => {
 //   uid,
 //   email,
 //   phoneNumber,
-//   profilePicture,
+//   avatar,
 // }: {
 //   username: string,
 //   uid: string,
 //   email: string,
 //   phoneNumber: number,
-//   profilePicture: string,
+//   avatar: string,
 // }) => {
 //   return set(ref(db, `users/${uid}/details`), {
 //     username,
 //     email,
 //     phoneNumber,
-//     profilePicture,
+//     avatar,
 //     createdOn: Date.now(),
 //   });
 // };

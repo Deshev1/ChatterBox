@@ -94,6 +94,24 @@ export const validateEmail = function (email: string): boolean | string {
   return true;
 };
 
+export const validateTeamName = function (username: string): boolean | string {
+  const trimmedUsername = username.trim();
+
+  if (!trimmedUsername) {
+    return "Team name cannot be empty.";
+  }
+
+  if (trimmedUsername.length < 5) {
+    return "Team name must be at least 5 characters long.";
+  }
+
+  if (trimmedUsername.length > 35) {
+    return "Username must be no more than 35 characters long.";
+  }
+
+  return true;
+};
+
 // export const validateNumber = function (number: number) {
 //   const phoneNumber: object | undefined = parsePhoneNumberFromString(
 //     `+${number}`

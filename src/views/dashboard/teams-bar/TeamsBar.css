@@ -4,7 +4,7 @@
   align-items: center;
   gap: 5px;
   padding: var(--space-xs);
-  width: 60px;
+  flex: 0 0 60px;
 }
 
 .teams-list {

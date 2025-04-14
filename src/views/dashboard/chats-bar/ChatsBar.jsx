@@ -51,7 +51,7 @@ function ChatsBar() {
           return {
             ...chat,
             name: receiverData.username,
-            imageUrl: receiverData.profilePicture,
+            imageUrl: receiverData.avatar,
             status: receiverData.status,
             userUid: receiver[0],
           };

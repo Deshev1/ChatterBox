@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import TeamsBar from "./teams-bar/TeamsBar";
 import ChatsBar from "./chats-bar/ChatsBar";
+import CreateTeam from "./create-team/CreateTeam";
 
 function Dashboard({
   isCreateChat,
@@ -31,17 +32,15 @@ function Dashboard({
 
   return (
     <div className="app-container">
-      <div className="app-container">
-        <TeamsBar />
-        <ChatsBar />
-        <div onClick={handleLogout}>asdf</div>
-        {/* {isFriendsWindow && <FriendsWindow />} */}
-        {/* {isCreateTeam && <CreateTeam />} */}
-        {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}
-        {/* {isCreateChat && !(user.uid === teamId) && <CreateTeamChat />} */}
-        {/* {isChatWindow && <ChatWindow></ChatWindow>} */}
-        {/* {isAddMembers && <AddMembers></AddMembers>} */}
-      </div>
+      <TeamsBar />
+      <ChatsBar />
+      <div onClick={handleLogout}>asdf</div>
+      {/* {isFriendsWindow && <FriendsWindow />} */}
+      {isCreateTeam && <CreateTeam />}
+      {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}
+      {/* {isCreateChat && !(user.uid === teamId) && <CreateTeamChat />} */}
+      {/* {isChatWindow && <ChatWindow></ChatWindow>} */}
+      {/* {isAddMembers && <AddMembers></AddMembers>} */}
     </div>
   );
 }

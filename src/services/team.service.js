@@ -11,6 +11,57 @@ import { db } from "../config/firebase-config";
 
 const teamsRef = ref(db, "teams/");
 
+export const createTeam = async (
+  name,
+  ownerId,
+  imageUrl = "default-team.png"
+) => {
+  // Check if team name already exists
+  const snapshot = await get(teamsRef);
+  const teams = snapshot.val();
+  if (teams) {
+    const nameExists = Object.values(teams).some((team) => team.name === name);
+    if (nameExists) throw new Error("Team name already exists.");
+  }
+  // Create a new team with a unique ID
+  const userTeamsRef = ref(db, `users/${ownerId}/teams`);
+
+  const newTeamRef = push(teamsRef);
+  const teamId = newTeamRef.key;
+  const teamData = {
+    details: { name, owner: ownerId, imageUrl },
+    members: { [ownerId]: true },
+  };
+
+  try {
+    await set(newTeamRef, teamData);
+    const generalChat = await createTeamChat(
+      teamId,
+      "General",
+      [ownerId],
+      null
+    );
+
+    await update(userTeamsRef, { [teamId]: true });
+
+    // const updates = {};
+    // members.forEach((memberUid) => {
+    //   updates[`users/${memberUid}/teams/${teamId}`] = true;
+    // });
+    // await update(ref(db), updates);
+
+    // Increment the teamsCount
+    const teamsCountRef = ref(db, "teams/teamsCount");
+    await runTransaction(teamsCountRef, (currentCount) => {
+      return (currentCount || 0) + 1;
+    });
+
+    return { ...teamData, chats: generalChat, id: teamId };
+  } catch (error) {
+    throw new Error("Error creating team: " + error.message);
+  }
+};
+
 export const getTeamsDetails = async (teams) => {
   let teamsDetails = await Promise.all(
     teams.map(async (teamId) => {

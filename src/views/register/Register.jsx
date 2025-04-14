@@ -40,7 +40,7 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const imageUrl = watch("image");
+  const imageUrl = watch("avatar");
 
   const onSubmit = async function (data) {
     try {
@@ -57,7 +57,7 @@ function Register() {
         username: data.username,
         uid: userCredentials.user.uid,
         email: userCredentials.user.email,
-        profilePicture: data.image,
+        avatar: data.avatar,
       });
 
       //Logout user (firebase automatically logs users in)
@@ -94,7 +94,7 @@ function Register() {
   };
 
   const imageOptions = {
-    ...register("image", {
+    ...register("avatar", {
       required: "Image is required.",
     }),
   };
@@ -140,7 +140,7 @@ function Register() {
           clearErrors={clearErrors}
           setValue={setValue}
           imageUrl={imageUrl}
-          error={errors.image}
+          error={errors.avatar}
         />
         <Input
           name="username"
