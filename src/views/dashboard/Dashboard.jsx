@@ -25,6 +25,8 @@ function Dashboard({
     if (!user) navigate("/");
   }, [user]);
 
+  if (!user) return;
+
   return (
     <div className="app-container">
       <div className="app-container">
