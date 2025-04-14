@@ -25,7 +25,8 @@ function Dashboard({
     if (!user) navigate("/");
   }, [user]);
 
-  if (!user) return;
+  //Add loader later
+  if (!userData) return;
 
   return (
     <div className="app-container">

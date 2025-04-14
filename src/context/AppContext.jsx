@@ -1,7 +1,10 @@
 //Dependency
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { auth } from "../config/firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+//Services
+import { subscribeToStatus } from "../services/user.service";
 import { logoutUser } from "../services/auth.service";
 
 export const AppContext = createContext({
@@ -28,6 +31,39 @@ export function AppContextProvider({ children }) {
       return { ...prev, user };
     });
   }
+
+  useEffect(() => {
+    if (!user || !appState.userData) return;
+    const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
+      setAppState((prev) => {
+        return {
+          ...prev,
+          userData: {
+            ...prev.userData,
+            details: {
+              ...prev.userData.details,
+              status: statusFromFirebase,
+            },
+          },
+        };
+      });
+
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          ...appState.userData,
+          details: {
+            ...appState.userData.details,
+            status: statusFromFirebase,
+          },
+        })
+      );
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   async function handleLogout() {
     await logoutUser();

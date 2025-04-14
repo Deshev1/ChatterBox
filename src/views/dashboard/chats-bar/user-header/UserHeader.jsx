@@ -6,53 +6,30 @@ import { faUsers, faEdit } from "@fortawesome/free-solid-svg-icons";
 import "./UserHeader.css";
 
 //Dependencies
-import { useState, useEffect, useContext } from "react";
+import { useContext, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../../../context/AppContext";
 
 //Services
-import {
-  subscribeToStatus,
-  updateUserStatus,
-} from "../../../../services/user.service";
+import { updateUserStatus } from "../../../../services/user.service";
 
 //Components imports
 import Dropdown from "../../../../components/dropdown/Dropdown";
 import Avatar from "../../../../components/avatar/Avatar";
 
 function UserHeader() {
-  const { user, userData, setContext } = useContext(AppContext);
-  const [status, setStatus] = useState(userData.details.status || "online");
+  const { user, userData } = useContext(AppContext);
   const { filter } = useParams();
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
-      setStatus(statusFromFirebase);
-    });
+  //Memorize the status and change it only on change in userData
+  const status = useMemo(
+    () => userData.details.status,
+    [userData.details.status]
+  );
 
-    return () => {
-      unsubscribe();
-    };
-  }, [user.uid]);
-
+  //Update status in firebase
   const handleStatus = (option) => {
-    setStatus(option);
-
-    setContext((prev) => ({
-      ...prev,
-      userData: {
-        ...prev.userData,
-        status: option,
-      },
-    }));
-
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({ ...userData, status: option })
-    );
-
     updateUserStatus(user.uid, option);
   };
 
