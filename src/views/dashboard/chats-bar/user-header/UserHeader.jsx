@@ -84,12 +84,12 @@ function UserHeader() {
           imageUrl={userData.details.avatar || "default-avatar.png"}
         ></Avatar>
         <div className="user-status">
-          <p className="username">{userData.details.username}</p>
           <Dropdown
             handleStatus={handleStatus}
             status={status}
             options={["online", "busy", "offline"]}
           ></Dropdown>
+          <p className="username">{userData.details.username}</p>
         </div>
       </div>
       <div className="user-btns">

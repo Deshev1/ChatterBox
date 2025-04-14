@@ -92,7 +92,6 @@ export const subscribeToTeams = function (userUid, callback) {
   const teamsRef = ref(db, `/users/${userUid}/teams`);
 
   const unsubscribe = onValue(teamsRef, (snapshot) => {
-    console.log("team change");
     if (snapshot.exists()) callback(Object.keys(snapshot.val()));
   });
 
