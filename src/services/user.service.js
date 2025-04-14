@@ -6,6 +6,7 @@ import {
   orderByChild,
   equalTo,
   onValue,
+  onDisconnect,
 } from "firebase/database";
 import { db } from "../config/firebase-config";
 
@@ -44,6 +45,20 @@ export const subscribeToStatus = function (uid, setFunction) {
   });
 
   return unsubscribe;
+};
+
+export const isUserConnected = (uid) => {
+  const connectedRef = ref(db, ".info/connected");
+
+  const unsubscribe = onValue(connectedRef, (snapshot) => {
+    if (snapshot.val() === true) {
+      onDisconnect(ref(db, `users/${uid}/details/status`)).set("offline");
+    }
+  });
+
+  return () => {
+    unsubscribe();
+  };
 };
 
 export const updateUserStatus = (uid, status) => {

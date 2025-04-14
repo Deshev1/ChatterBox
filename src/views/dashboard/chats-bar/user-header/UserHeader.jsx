@@ -18,7 +18,7 @@ import Dropdown from "../../../../components/dropdown/Dropdown";
 import Avatar from "../../../../components/avatar/Avatar";
 
 function UserHeader() {
-  const { user, userData } = useContext(AppContext);
+  const { user, userData, setContext } = useContext(AppContext);
   const { filter } = useParams();
   const navigate = useNavigate();
 
@@ -30,7 +30,21 @@ function UserHeader() {
 
   //Update status in firebase
   const handleStatus = (option) => {
-    updateUserStatus(user.uid, option);
+    try {
+      updateUserStatus(user.uid, option);
+    } catch (e) {
+      console.error(e.message);
+    }
+
+    setContext((prev) => {
+      return {
+        ...prev,
+        userData: {
+          ...prev.userData,
+          details: { ...prev.userData.details, status: option },
+        },
+      };
+    });
   };
 
   return (

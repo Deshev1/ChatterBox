@@ -33,7 +33,8 @@ export function AppContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if (!user || !appState.userData) return;
+    if (!appState.user || !appState.userData) return;
+
     const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
       setAppState((prev) => {
         return {
@@ -63,7 +64,7 @@ export function AppContextProvider({ children }) {
     return () => {
       unsubscribe();
     };
-  }, [user]);
+  }, [appState.user]);
 
   async function handleLogout() {
     await logoutUser();

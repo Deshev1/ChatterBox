@@ -22,6 +22,7 @@ function Dashboard({
   const { teamId, chatId, filter } = useParams();
 
   useEffect(() => {
+    console.log("AAAAAA");
     if (!user) navigate("/");
   }, [user]);
 
