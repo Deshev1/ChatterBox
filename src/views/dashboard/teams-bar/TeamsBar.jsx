@@ -44,10 +44,12 @@ function TeamsBar() {
 
   return (
     <div className="teams-bar">
-      <Logo
-        size={40}
-        handleClick={() => navigate(`/${user.uid}/friends/all`)}
-      />
+      <div className="teams-logo">
+        <Logo
+          size={40}
+          handleClick={() => navigate(`/${user.uid}/friends/all`)}
+        />
+      </div>
       <div className="teams-list">
         {teamsDetails &&
           teamsDetails.map((team) => {

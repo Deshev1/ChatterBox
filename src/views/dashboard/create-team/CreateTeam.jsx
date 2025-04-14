@@ -3,7 +3,7 @@ import "./CreateTeam.css";
 
 //Dependency
 import { useForm } from "react-hook-form";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Services
@@ -32,7 +32,19 @@ function CreateTeam() {
 
   const handleCreateTeam = async (data) => {
     console.log(data);
-    const teamData = await createTeam(data.teamName, user.uid, data.avatar);
+    try {
+      const teamData = await createTeam(data.teamName, user.uid, data.avatar);
+    } catch (e) {
+      setError(
+        "root",
+        {
+          type: "string",
+          message: e.message,
+        },
+        { shouldFocus: true }
+      );
+    }
+
     // navigate(`/${teamData.id}/${Object.keys(teamData.chats)[0]}`);
   };
 
@@ -61,6 +73,8 @@ function CreateTeam() {
           }}
           className="create-team-form"
         >
+          {errors.root && <p className="form-error">{errors.root.message}</p>}
+
           <UploadImage
             clearErrors={clearErrors}
             setValue={setValue}
@@ -70,8 +84,14 @@ function CreateTeam() {
           <Input
             name="Team name"
             options={teamNameOptions}
+            error={errors.teamName}
           ></Input>
-          <Button type="submit">Submit</Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+          >
+            Submit
+          </Button>
         </form>
       </div>
     </div>
