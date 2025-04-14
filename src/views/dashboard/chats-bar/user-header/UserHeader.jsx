@@ -6,12 +6,16 @@ import { faUsers, faEdit } from "@fortawesome/free-solid-svg-icons";
 import "./UserHeader.css";
 
 //Dependencies
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../../../context/AppContext";
 
 //Services
-import { updateUserStatus } from "../../../../services/user.service";
+import {
+  updateUserStatus,
+  subscribeToStatus,
+  isUserConnected,
+} from "../../../../services/user.service";
 
 //Components imports
 import Dropdown from "../../../../components/dropdown/Dropdown";
@@ -35,17 +39,41 @@ function UserHeader() {
     } catch (e) {
       console.error(e.message);
     }
-
-    setContext((prev) => {
-      return {
-        ...prev,
-        userData: {
-          ...prev.userData,
-          details: { ...prev.userData.details, status: option },
-        },
-      };
-    });
   };
+
+  useEffect(() => {
+    const unsubscribeConnected = isUserConnected(user.uid);
+    const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
+      setContext((prev) => {
+        return {
+          ...prev,
+          userData: {
+            ...prev.userData,
+            details: {
+              ...prev.userData.details,
+              status: statusFromFirebase,
+            },
+          },
+        };
+      });
+
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          ...userData,
+          details: {
+            ...userData.details,
+            status: statusFromFirebase,
+          },
+        })
+      );
+    });
+
+    return () => {
+      unsubscribe();
+      unsubscribeConnected();
+    };
+  }, [user]);
 
   return (
     <div className="user-header">

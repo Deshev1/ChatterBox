@@ -52,6 +52,7 @@ export const isUserConnected = (uid) => {
 
   const unsubscribe = onValue(connectedRef, (snapshot) => {
     if (snapshot.val() === true) {
+      set(ref(db, `users/${uid}/details/status`), "online");
       onDisconnect(ref(db, `users/${uid}/details/status`)).set("offline");
     }
   });
