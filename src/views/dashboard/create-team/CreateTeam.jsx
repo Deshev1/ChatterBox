@@ -33,7 +33,7 @@ function CreateTeam() {
   const handleCreateTeam = async (data) => {
     console.log(data);
     try {
-      const teamData = await createTeam(data.teamName, user.uid, data.avatar);
+      await createTeam(data.teamName, user.uid, data.avatar);
     } catch (e) {
       setError(
         "root",

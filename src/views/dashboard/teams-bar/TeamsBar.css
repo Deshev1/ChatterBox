@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 60px;
-  border-bottom: 1px solid gainsboro;
+  /* border-bottom: 1px solid black; */
   width: calc(100% + 2 * var(--space-xs));
   margin-top: calc(-1 * var(--space-xs));
 

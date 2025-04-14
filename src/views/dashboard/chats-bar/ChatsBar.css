@@ -13,8 +13,8 @@
   padding: var(--space-xs);
   height: 100%;
   overflow-y: auto;
-  border-left: 1px solid gainsboro;
-  border-right: 1px solid gainsboro;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .team-actions {
@@ -24,6 +24,6 @@
   padding: var(--space-xs);
   gap: 10px;
   width: 100%;
-  border-left: 1px solid gainsboro;
-  border-right: 1px solid gainsboro;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }

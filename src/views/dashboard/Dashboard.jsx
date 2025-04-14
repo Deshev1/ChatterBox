@@ -34,7 +34,7 @@ function Dashboard({
     <div className="app-container">
       <TeamsBar />
       <ChatsBar />
-      <div onClick={handleLogout}>asdf</div>
+      {/* <div onClick={handleLogout}>asdf</div> */}
       {/* {isFriendsWindow && <FriendsWindow />} */}
       {isCreateTeam && <CreateTeam />}
       {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}

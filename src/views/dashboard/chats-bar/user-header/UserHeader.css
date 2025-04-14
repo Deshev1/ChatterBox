@@ -5,7 +5,10 @@
   justify-content: space-between;
   gap: 10px;
   padding: var(--space-xs);
-  border: 1px solid gainsboro;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+
+  background-color: var(--main-color);
   border-top: none;
 }
 
@@ -14,6 +17,14 @@
   align-items: center;
   gap: 10px;
   font-size: 12px;
+  background-color: white;
+  border-radius: var(--radius-xs);
+  padding: 1px 3px 1px 3px;
+}
+
+.username {
+  font-family: var(--logo-font);
+  font-size: var(--font-body);
 }
 
 .user-image {
