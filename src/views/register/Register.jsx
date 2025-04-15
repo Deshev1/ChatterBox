@@ -12,7 +12,7 @@ import {
 import { registerUser } from "../../services/auth.service";
 import {
   getUserDataByUsername,
-  setUserHandle,
+  createUserHandle,
 } from "../../services/user.service";
 import { useContext, useState } from "react";
 
@@ -53,7 +53,7 @@ function Register() {
       const userCredentials = await registerUser(data.email, data.password);
 
       //Log user in database
-      setUserHandle({
+      createUserHandle({
         username: data.username,
         uid: userCredentials.user.uid,
         email: userCredentials.user.email,

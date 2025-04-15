@@ -11,7 +11,7 @@ import {
   runTransaction,
 } from "firebase/database";
 import { db } from "../config/firebase-config";
-export const fetchChatData = async (chatId) => {
+export const getChatData = async (chatId) => {
   try {
     const chatRef = ref(db, `chats/${chatId}`);
     const snapshot = await get(chatRef);
@@ -56,10 +56,6 @@ export const subscribeToChats = function (teamId, isUser, callback) {
 
   return unsubscribe;
 };
-export const sendMessage = async function (messageObject, chatId) {
-  const newMessageRef = await push(ref(db, `/chats/${chatId}/messages`));
-  return await set(newMessageRef, messageObject);
-};
 
 export const subscribeToMessages = function (chatId, callback) {
   const chatMessagesRef = ref(db, `/chats/${chatId}/messages`);
@@ -73,4 +69,9 @@ export const subscribeToMessages = function (chatId, callback) {
   });
 
   return unsubscribe;
+};
+
+export const sendMessage = async function (messageObject, chatId) {
+  const newMessageRef = await push(ref(db, `/chats/${chatId}/messages`));
+  return await set(newMessageRef, messageObject);
 };

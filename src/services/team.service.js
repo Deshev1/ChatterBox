@@ -76,6 +76,35 @@ export const createTeam = async (
   }
 };
 
+export const createTeamChat = async (
+  teamId,
+  name,
+  creatorId,
+  imageUrl = "default-chat.png"
+) => {
+  try {
+    if (name.length < 3 || name.length > 40) {
+      throw new Error("Channel name must be between 3 and 40 characters.");
+    }
+    const chatsRef = ref(db, `chats`);
+    const teamChatsRef = ref(db, `teams/${teamId}/chats`);
+
+    const newChatRef = push(chatsRef);
+    const chatId = newChatRef.key;
+    const channelData = {
+      details: { name, imageUrl },
+      members: { [creatorId]: true },
+    };
+
+    await set(newChatRef, channelData);
+    await update(teamChatsRef, { [chatId]: true });
+
+    return { [chatId]: channelData };
+  } catch (e) {
+    console.error(e.message);
+  }
+};
+
 export const getTeamsDetails = async (teams) => {
   let teamsDetails = await Promise.all(
     teams.map(async (teamId) => {
@@ -118,35 +147,5 @@ export const leaveTeam = async function (teamUid, userUid) {
     await runTransaction(teamsCountRef, (currentCount) => {
       return (currentCount || 0) - 1;
     });
-  }
-};
-
-// Function to create a new channel
-export const createTeamChat = async (
-  teamId,
-  name,
-  creatorId,
-  imageUrl = "default-chat.png"
-) => {
-  try {
-    if (name.length < 3 || name.length > 40) {
-      throw new Error("Channel name must be between 3 and 40 characters.");
-    }
-    const chatsRef = ref(db, `chats`);
-    const teamChatsRef = ref(db, `teams/${teamId}/chats`);
-
-    const newChatRef = push(chatsRef);
-    const chatId = newChatRef.key;
-    const channelData = {
-      details: { name, imageUrl },
-      members: { [creatorId]: true },
-    };
-
-    await set(newChatRef, channelData);
-    await update(teamChatsRef, { [chatId]: true });
-
-    return { [chatId]: channelData };
-  } catch (e) {
-    console.error(e.message);
   }
 };

@@ -13,7 +13,7 @@ import { AppContext } from "../../../context/AppContext";
 
 //Services
 import { getUsersData } from "../../../services/user.service";
-import { fetchChatData } from "../../../services/chat.service";
+import { getChatData } from "../../../services/chat.service";
 
 function ChatWindow() {
   const [chatData, setChatData] = useState(null);
@@ -27,7 +27,7 @@ function ChatWindow() {
   useEffect(() => {
     setLoader(true);
     if (chatId) {
-      fetchChatData(chatId)
+      getChatData(chatId)
         .then((data) => {
           data.members = Object.keys(data.members).filter(
             (member) => member !== user.uid

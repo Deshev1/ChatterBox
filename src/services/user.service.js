@@ -10,7 +10,7 @@ import {
 } from "firebase/database";
 import { db } from "../config/firebase-config";
 
-export const setUserHandle = ({ username, uid, email, avatar }) => {
+export const createUserHandle = ({ username, uid, email, avatar }) => {
   return set(ref(db, `users/${uid}/details`), {
     username,
     email,
@@ -81,7 +81,7 @@ export const subscribeToConnected = (uid) => {
 };
 
 // TS
-// export const setUserHandle = ({
+// export const createUserHandle = ({
 //   username,
 //   uid,
 //   email,
