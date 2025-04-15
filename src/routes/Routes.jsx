@@ -34,6 +34,10 @@ function AllRoutes() {
         path="/:teamId/create-team"
         element={<Dashboard isCreateTeam={true} />}
       ></Route>
+      <Route
+        path="/:teamId/:chatId"
+        element={<Dashboard isChatWindow={true} />}
+      ></Route>
     </Routes>
   );
 }

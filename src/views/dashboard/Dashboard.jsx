@@ -10,6 +10,7 @@ import { AppContext } from "../../context/AppContext";
 import TeamsBar from "./teams-bar/TeamsBar";
 import ChatsBar from "./chats-bar/ChatsBar";
 import CreateTeam from "./create-team/CreateTeam";
+import ChatWindow from "./chat-window/ChatWindow";
 
 function Dashboard({
   isCreateChat,
@@ -23,8 +24,10 @@ function Dashboard({
   const { teamId, chatId, filter } = useParams();
 
   useEffect(() => {
-    console.log("AAAAAA");
-    if (!user) navigate("/");
+    if (!user) {
+      console.log("test");
+      navigate("/");
+    }
   }, [user]);
 
   //Add loader later
@@ -34,12 +37,12 @@ function Dashboard({
     <div className="app-container">
       <TeamsBar />
       <ChatsBar />
-      <div onClick={handleLogout}>logout</div>
+      {/* <div onClick={handleLogout}>logout</div> */}
       {/* {isFriendsWindow && <FriendsWindow />} */}
       {isCreateTeam && <CreateTeam />}
       {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}
       {/* {isCreateChat && !(user.uid === teamId) && <CreateTeamChat />} */}
-      {/* {isChatWindow && <ChatWindow></ChatWindow>} */}
+      {isChatWindow && <ChatWindow></ChatWindow>}
       {/* {isAddMembers && <AddMembers></AddMembers>} */}
     </div>
   );

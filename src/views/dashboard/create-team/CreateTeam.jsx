@@ -33,7 +33,8 @@ function CreateTeam() {
   const handleCreateTeam = async (data) => {
     console.log(data);
     try {
-      await createTeam(data.teamName, user.uid, data.avatar);
+      const teamData = await createTeam(data.teamName, user.uid, data.avatar);
+      navigate(`/${teamData.id}/${Object.keys(teamData.chats)[0]}`);
     } catch (e) {
       setError(
         "root",
@@ -44,8 +45,6 @@ function CreateTeam() {
         { shouldFocus: true }
       );
     }
-
-    // navigate(`/${teamData.id}/${Object.keys(teamData.chats)[0]}`);
   };
 
   const teamNameOptions = {

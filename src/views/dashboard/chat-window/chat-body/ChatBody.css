@@ -1,0 +1,125 @@
+.chat-body {
+  width: 100%;
+  padding: 10px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  padding: 0 10px 10px 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.chat-input-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+}
+
+.chat-input-container button {
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: 0.3s;
+  background-color: green;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+
+.message-image {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+
+.first-message-container {
+  display: flex;
+  margin-top: 15px;
+}
+
+.first-message {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.first-message-timestamp {
+  font-size: 14px;
+  color: rgb(63, 63, 63);
+  font-weight: normal;
+}
+
+.first-message-container:hover {
+  background-color: rgb(254, 87, 87);
+}
+
+.sender-avatar-container {
+  width: 62px;
+  /* background-color: #0056b3; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.subsequent-message {
+  /* background-color: red; */
+  display: flex;
+}
+
+.subsequent-message-timestamp {
+  min-width: 62px;
+  max-width: 62px;
+  /* background-color: green; */
+  font-size: 14px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.subsequent-message-container:hover {
+  background-color: rgb(254, 87, 87);
+}
+.subsequent-message:hover .subsequent-message-timestamp {
+  opacity: 1;
+}
+
+.message-image-container {
+  display: flex;
+}
+
+.message-image-container:hover .subsequent-message-timestamp {
+  opacity: 1;
+}
