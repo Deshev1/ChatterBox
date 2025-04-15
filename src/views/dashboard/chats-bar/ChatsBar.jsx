@@ -110,14 +110,12 @@ function ChatsBar() {
           <Avatar
             handleClick={() => navigate(`/${teamId}/add-members`)}
             imageUrl={userPlus}
-            size={40}
             padding={8}
             hover={true}
           />
           <Avatar
             handleClick={() => navigate(`/${teamId}/create-chat`)}
             imageUrl={plusSign}
-            size={40}
             padding={8}
             hover={true}
           />
@@ -127,7 +125,6 @@ function ChatsBar() {
               navigate(`/home`);
             }}
             imageUrl={openDoor}
-            size={40}
             padding={8}
             hover={true}
           />

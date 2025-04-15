@@ -158,3 +158,11 @@ export const leaveTeam = async function (teamUid, userUid) {
     });
   }
 };
+
+export const addUserToTeam = function (teamUid, userUid) {
+  const teamRef = ref(db, `teams/${teamUid}/members`);
+  const userRef = ref(db, `users/${userUid}/teams`);
+
+  update(teamRef, { [userUid]: true });
+  update(userRef, { [teamUid]: true });
+};

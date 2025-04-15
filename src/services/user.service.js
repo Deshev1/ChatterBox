@@ -80,6 +80,31 @@ export const subscribeToConnected = (uid) => {
   };
 };
 
+export const searchForUsers = async (searchBy = "username", searchValue) => {
+  try {
+    const snapshot = await get(ref(db, "users"));
+    if (snapshot.exists()) {
+      const users = snapshot.val();
+
+      let filteredUsers = Object.entries(users).filter((user) => {
+        return user[1]?.details?.[searchBy]
+          ?.toLowerCase()
+          ?.includes(searchValue?.toLowerCase())
+          ? user[1].details[searchBy]
+              .toLowerCase()
+              .includes(searchValue.toLowerCase())
+          : false;
+      });
+
+      return filteredUsers;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error(e.message);
+  }
+};
+
 // TS
 // export const createUserHandle = ({
 //   username,

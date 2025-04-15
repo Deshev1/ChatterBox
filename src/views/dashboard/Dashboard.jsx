@@ -11,6 +11,7 @@ import TeamsBar from "./teams-bar/TeamsBar";
 import ChatsBar from "./chats-bar/ChatsBar";
 import CreateTeam from "./create-team/CreateTeam";
 import ChatWindow from "./chat-window/ChatWindow";
+import AddMembers from "./chats-bar/add-members/AddMembers";
 
 function Dashboard({
   isCreateChat,
@@ -42,7 +43,7 @@ function Dashboard({
       {/* {isCreateChat && user.uid === teamId && <CreateGroupChat />} */}
       {/* {isCreateChat && !(user.uid === teamId) && <CreateTeamChat />} */}
       {isChatWindow && <ChatWindow></ChatWindow>}
-      {/* {isAddMembers && <AddMembers></AddMembers>} */}
+      {isAddMembers && <AddMembers></AddMembers>}
     </div>
   );
 }
