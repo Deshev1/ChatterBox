@@ -105,15 +105,20 @@ export const createTeamChat = async (
   }
 };
 
-export const getTeamsDetails = async (teams) => {
+export const getTeamsData = async (teams, keys = ["details", "chats"]) => {
   try {
     let teamsDetails = await Promise.all(
       teams.map(async (teamId) => {
-        const teamDetails = (
-          await get(ref(db, `teams/${teamId}/details`))
-        ).val();
+        const teamObj = { id: teamId };
 
-        return { ...teamDetails, id: teamId };
+        await Promise.all(
+          keys.map(async (key) => {
+            const snapshot = await get(ref(db, `teams/${teamId}/${key}`));
+            teamObj[key] = snapshot.val();
+          })
+        );
+
+        return teamObj;
       })
     );
 

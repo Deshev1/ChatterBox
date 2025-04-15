@@ -11,31 +11,27 @@ import { AppContext } from "../../../context/AppContext";
 // Dependency imports
 import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import {
-  getTeamsDetails,
-  subscribeToTeams,
-} from "../../../services/team.service";
+import { getTeamsData, subscribeToTeams } from "../../../services/team.service";
 
 function TeamsBar() {
-  const [teamsDetails, setTeamsDetails] = useState(null);
+  const [teamsData, setTeamsData] = useState(null);
   const { user, userData } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const handleTeamClick = async (teamDetails) => {
-    const firstChatId = Object.keys(teamDetails.chats)[0];
-    navigate(`/${teamDetails.id}/${firstChatId}`);
+  const handleTeamClick = async (teamData) => {
+    console.log(teamData);
+    const firstChatId = Object.keys(teamData.chats)[0];
+    navigate(`/${teamData.id}/${firstChatId}`);
   };
 
-  function handleFetchTeamsDetails(teamsIds) {
-    getTeamsDetails(teamsIds).then((teamsDetails) =>
-      setTeamsDetails(teamsDetails)
-    );
+  function handleFetchTeamsData(teamsIds) {
+    getTeamsData(teamsIds).then((teamsData) => setTeamsData(teamsData));
   }
 
   useEffect(() => {
-    const unsubscribe = subscribeToTeams(user.uid, handleFetchTeamsDetails);
+    const unsubscribe = subscribeToTeams(user.uid, handleFetchTeamsData);
     if (userData?.teams) {
-      handleFetchTeamsDetails(Object.keys(userData.teams));
+      handleFetchTeamsData(Object.keys(userData.teams));
     }
     return () => {
       unsubscribe();
@@ -51,14 +47,15 @@ function TeamsBar() {
         />
       </div>
       <div className="teams-list">
-        {teamsDetails &&
-          teamsDetails.map((team) => {
+        {teamsData &&
+          teamsData.map((team) => {
+            console.log("team data", team);
             return (
               <Avatar
-                handleClick={() => console.log("hi")}
+                handleClick={() => handleTeamClick(team)}
                 key={team.id}
-                tooltip={team.name}
-                imageUrl={team?.imageUrl || defaultTeam}
+                tooltip={team.details.name}
+                imageUrl={team.details?.imageUrl || defaultTeam}
                 onClick={() => handleTeamClick(team)}
                 hover={true}
               />
