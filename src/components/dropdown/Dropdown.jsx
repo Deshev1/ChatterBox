@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-function Dropdown({ label, onChange, options = [], error }) {
+function Dropdown({ label, value, onChange, options = [], error }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -13,7 +13,10 @@ function Dropdown({ label, onChange, options = [], error }) {
         className="label-container"
         onClick={() => setOpen(!open)}
       >
-        <p>{label}</p>
+        <p>
+          {label}
+          {value && <strong>: {value}</strong>}
+        </p>
         <FontAwesomeIcon
           icon={faCaretDown}
           className={`icon ${open ? "rotated" : ""}`}

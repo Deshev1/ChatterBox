@@ -7,7 +7,7 @@
   padding: 2px 10px;
   border-radius: 20px;
   cursor: pointer;
-  background-color: greenyellow;
+  background-color: var(--main-color);
 }
 
 .chat-container.active {

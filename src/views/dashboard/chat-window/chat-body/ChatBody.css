@@ -100,7 +100,6 @@
 .subsequent-message-timestamp {
   min-width: 62px;
   max-width: 62px;
-  /* background-color: green; */
   font-size: 14px;
   padding: 2px;
   display: flex;

@@ -81,6 +81,7 @@ function AddMembers() {
             name="searchBy"
             render={({ field, fieldState }) => (
               <Dropdown
+                value={field.value}
                 label="Search by"
                 options={["username", "email"]}
                 onChange={field.onChange}

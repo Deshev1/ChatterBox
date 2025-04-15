@@ -27,9 +27,7 @@ function UserPreview({
       <div className="friend-details">
         <Avatar
           imageUrl={
-            foundUser[1].details.profilePicture
-              ? foundUser[1].details.profilePicture
-              : null
+            foundUser[1].details.avatar ? foundUser[1].details.avatar : null
           }
           type="user-image"
         ></Avatar>

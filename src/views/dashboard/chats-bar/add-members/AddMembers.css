@@ -17,23 +17,29 @@
 
 .add-members-body {
   display: flex;
-  flex-direction: column;
   flex: 1;
   padding: var(--space-xs);
   margin: var(--space-xs);
-  /* border: 1px solid gainsboro; */
+  gap: var(--space-xs);
   border-radius: var(--radius-sm);
-  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); */
 }
 
 .members-search-form {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: var(--space-xs);
   gap: var(--space-xs);
+  border-radius: var(--radius-sm);
+  border: 1px solid gainsboro;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); */
 }
 .members-search-results {
-  display: flex;
   flex: 1;
   border-radius: var(--radius-sm);
+  padding: var(--space-xs);
+  border: 1px solid gainsboro;
+
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); */
 }
