@@ -10,7 +10,7 @@ import {
 } from "firebase/database";
 import { db } from "../config/firebase-config";
 
-export const createUserHandle = ({ username, uid, email, avatar }) => {
+export const setUserHandle = ({ username, uid, email, avatar }) => {
   return set(ref(db, `users/${uid}/details`), {
     username,
     email,
@@ -18,6 +18,10 @@ export const createUserHandle = ({ username, uid, email, avatar }) => {
     status: "offline",
     createdOn: Date.now(),
   });
+};
+
+export const setUserStatus = (uid, status) => {
+  return set(ref(db, `users/${uid}/details/status`), status);
 };
 
 export const getUserDataByUid = (uid) => {
@@ -51,10 +55,6 @@ export async function getUsersData(userUids) {
   return requestsData.length > 0 ? requestsData : null;
 }
 
-export const setUserStatus = (uid, status) => {
-  return set(ref(db, `users/${uid}/details/status`), status);
-};
-
 export const subscribeToStatus = function (uid, setFunction) {
   const reference = ref(db, `/users/${uid}/details/status`);
 
@@ -81,7 +81,7 @@ export const subscribeToConnected = (uid) => {
 };
 
 // TS
-// export const createUserHandle = ({
+// export const setUserHandle = ({
 //   username,
 //   uid,
 //   email,
