@@ -1,6 +1,6 @@
-//Font awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers, faEdit } from "@fortawesome/free-solid-svg-icons";
+//Icons
+import penToSquare from "../../../../assets/icons/penToSquare.svg";
+import usersSolid from "../../../../assets/icons/usersSolid.svg";
 
 //CSS
 import "./UserHeader.css";
@@ -93,23 +93,26 @@ function UserHeader() {
         </div>
       </div>
       <div className="user-btns">
-        <FontAwesomeIcon
-          icon={faUsers}
-          className="icon-btn"
-          onClick={() => {
+        <Avatar
+          imageUrl={usersSolid}
+          size={22}
+          handleClick={() => {
             if (!filter) navigate(`/${user.uid}/friends/all`);
           }}
-        ></FontAwesomeIcon>
+        ></Avatar>
+        <Avatar
+          imageUrl={penToSquare}
+          size={22}
+          handleClick={() => {
+            if (!filter) navigate(`/${user.uid}/friends/all`);
+          }}
+        ></Avatar>
+
         {userData?.friendRequests?.received && (
           <div className="pending-friend-requests-bubble">
             {Object.keys(userData.friendRequests.received).length}
           </div>
         )}
-        <FontAwesomeIcon
-          icon={faEdit}
-          className="icon-btn edit-profile-btn"
-          onClick={() => navigate(`/${user.uid}/friends/settings`)}
-        ></FontAwesomeIcon>
       </div>
     </div>
   );
