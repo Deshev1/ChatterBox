@@ -106,15 +106,21 @@ export const createTeamChat = async (
 };
 
 export const getTeamsDetails = async (teams) => {
-  let teamsDetails = await Promise.all(
-    teams.map(async (teamId) => {
-      const teamDetails = (await get(ref(db, `teams/${teamId}/details`))).val();
-      teamDetails.id = teamId;
-      return teamDetails;
-    })
-  );
+  try {
+    let teamsDetails = await Promise.all(
+      teams.map(async (teamId) => {
+        const teamDetails = (
+          await get(ref(db, `teams/${teamId}/details`))
+        ).val();
 
-  return teamsDetails;
+        return { ...teamDetails, id: teamId };
+      })
+    );
+
+    return teamsDetails;
+  } catch (e) {
+    console.error(e.message);
+  }
 };
 
 export const subscribeToTeams = function (userUid, callback) {

@@ -28,13 +28,12 @@ export const getChatData = async (chatId) => {
 export const getChatsDetails = async (teamId, isUser) => {
   const sourceRef = isUser
     ? ref(db, `users/${teamId}/chats`)
-    : ref(db, `teams/${teamId}/details/chats`);
+    : ref(db, `teams/${teamId}/chats`);
   let chats = (await get(sourceRef)).val();
+
   let chatsDetails = await Promise.all(
     Object.keys(chats).map(async (chatId) => {
-      const chatRef = isUser
-        ? ref(db, `chats/${chatId}`)
-        : ref(db, `chats/${chatId}/details`);
+      const chatRef = ref(db, `chats/${chatId}`);
       const chatDetails = (await get(chatRef)).val();
 
       chatDetails.id = chatId;
