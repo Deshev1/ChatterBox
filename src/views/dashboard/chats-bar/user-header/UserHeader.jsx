@@ -85,8 +85,8 @@ function UserHeader() {
         ></Avatar>
         <div className="user-status">
           <Dropdown
-            handleStatus={handleStatus}
-            status={status}
+            onChange={handleStatus}
+            label={status}
             options={["online", "busy", "offline"]}
           ></Dropdown>
           <p className="username">{userData.details.username}</p>

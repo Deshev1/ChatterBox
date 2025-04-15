@@ -1,15 +1,16 @@
-.status-container {
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.label-container {
   display: flex;
   align-items: center;
   gap: 5px;
   cursor: pointer;
 }
 
-.status-dropdown {
-  position: relative;
-}
-
-.status-dropdown-options {
+.dropdown-options {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@
   transform: translate(10px, -100px);
 }
 
-.status-dropdown-options.show {
+.dropdown-options.show {
   opacity: 1;
   pointer-events: auto;
   transform: translate(10px, -20px); /* 👈 moved slightly up & right */
