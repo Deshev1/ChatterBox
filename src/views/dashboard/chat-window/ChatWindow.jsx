@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { AppContext } from "../../../context/AppContext";
 
 //Services
-import { fetchUsersData } from "../../../services/user.service";
+import { getUsersData } from "../../../services/user.service";
 import { fetchChatData } from "../../../services/chat.service";
 
 function ChatWindow() {
@@ -34,7 +34,7 @@ function ChatWindow() {
           );
           data.uid = chatId;
           setChatData(data);
-          return fetchUsersData(data.members);
+          return getUsersData(data.members);
         })
         .then((data) => {
           setReceiversData(data ? data : "team-chat");

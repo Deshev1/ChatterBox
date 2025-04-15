@@ -24,10 +24,6 @@ export const getUserDataByUid = (uid) => {
   return get(ref(db, `users/${uid}`));
 };
 
-export const getUserDetailsByUid = (uid) => {
-  return get(ref(db, `users/${uid}/details`));
-};
-
 export const getUserDataByUsername = (username) => {
   const usersRef = ref(db, "users");
   const userQuery = query(
@@ -37,6 +33,28 @@ export const getUserDataByUsername = (username) => {
   );
   return get(userQuery);
 };
+
+export const getUserDetailsByUid = (uid) => {
+  return get(ref(db, `users/${uid}/details`));
+};
+
+export async function getUsersData(userUids) {
+  const requestsData = await Promise.all(
+    userUids.map(async (uid) => {
+      const snapshot = await get(ref(db, `users/${uid}/details`));
+      const requestData = snapshot.val();
+      requestData.uid = uid;
+      return snapshot.exists() ? requestData : null;
+    })
+  );
+
+  return requestsData.length > 0 ? requestsData : null;
+}
+
+export const setUserStatus = (uid, status) => {
+  return set(ref(db, `users/${uid}/details/status`), status);
+};
+
 export const subscribeToStatus = function (uid, setFunction) {
   const reference = ref(db, `/users/${uid}/details/status`);
 
@@ -47,7 +65,7 @@ export const subscribeToStatus = function (uid, setFunction) {
   return unsubscribe;
 };
 
-export const isUserConnected = (uid) => {
+export const subscribeToConnected = (uid) => {
   const connectedRef = ref(db, ".info/connected");
 
   const unsubscribe = onValue(connectedRef, (snapshot) => {
@@ -61,23 +79,6 @@ export const isUserConnected = (uid) => {
     unsubscribe();
   };
 };
-
-export const updateUserStatus = (uid, status) => {
-  return set(ref(db, `users/${uid}/details/status`), status);
-};
-
-export async function fetchUsersData(userUids) {
-  const requestsData = await Promise.all(
-    userUids.map(async (uid) => {
-      const snapshot = await get(ref(db, `users/${uid}/details`));
-      const requestData = snapshot.val();
-      requestData.uid = uid;
-      return snapshot.exists() ? requestData : null;
-    })
-  );
-
-  return requestsData.length > 0 ? requestsData : null;
-}
 
 // TS
 // export const createUserHandle = ({

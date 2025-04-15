@@ -12,9 +12,9 @@ import { AppContext } from "../../../../context/AppContext";
 
 //Services
 import {
-  updateUserStatus,
+  setUserStatus,
   subscribeToStatus,
-  isUserConnected,
+  subscribeToConnected,
 } from "../../../../services/user.service";
 
 //Components imports
@@ -35,14 +35,14 @@ function UserHeader() {
   //Update status in firebase
   const handleStatus = (option) => {
     try {
-      updateUserStatus(user.uid, option);
+      setUserStatus(user.uid, option);
     } catch (e) {
       console.error(e.message);
     }
   };
 
   useEffect(() => {
-    const unsubscribeConnected = isUserConnected(user.uid);
+    const unsubscribeConnected = subscribeToConnected(user.uid);
     const unsubscribe = subscribeToStatus(user.uid, (statusFromFirebase) => {
       setContext((prev) => {
         return {
