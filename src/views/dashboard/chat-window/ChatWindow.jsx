@@ -26,24 +26,22 @@ function ChatWindow() {
   //Fetch chat and members data
   useEffect(() => {
     setLoader(true);
-    if (chatId) {
-      getChatData(chatId)
-        .then((data) => {
-          data.members = Object.keys(data.members).filter(
-            (member) => member !== user.uid
-          );
-          data.uid = chatId;
-          setChatData(data);
-          return getUsersData(data.members);
-        })
-        .then((data) => {
-          setReceiversData(data ? data : "team-chat");
-        })
-        .catch((error) => {
-          throw new Error(error.message);
-        })
-        .finally(setLoader(false));
-    }
+    getChatData(chatId)
+      .then((data) => {
+        data.members = Object.keys(data.members).filter(
+          (member) => member !== user.uid
+        );
+        data.uid = chatId;
+        setChatData(data);
+        return getUsersData(data.members);
+      })
+      .then((data) => {
+        setReceiversData(data ? data : "team-chat");
+      })
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+      .finally(setLoader(false));
   }, [chatId]);
 
   if (!chatData || loader || !receiversData) return <p>loading</p>;

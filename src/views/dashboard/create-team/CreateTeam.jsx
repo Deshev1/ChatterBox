@@ -31,7 +31,6 @@ function CreateTeam() {
   const imageUrl = watch("avatar");
 
   const handleCreateTeam = async (data) => {
-    console.log(data);
     try {
       const teamData = await createTeam(data.teamName, user.uid, data.avatar);
       navigate(`/${teamData.id}/${Object.keys(teamData.chats)[0]}`);

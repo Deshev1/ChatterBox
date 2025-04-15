@@ -80,6 +80,8 @@ function ChatsBar() {
     };
   }, [teamId]);
 
+  useEffect(() => {}, [chats]);
+
   return (
     <div className="chats-bar">
       <UserHeader></UserHeader>
@@ -91,8 +93,8 @@ function ChatsBar() {
               <ChatPreview
                 key={chat.id}
                 chat={{
-                  name: chat.name,
-                  imageUrl: chat.imageUrl || defaultChat,
+                  name: chat.details.name,
+                  imageUrl: chat.details?.imageUrl || defaultChat,
                   status: chat?.status,
                   userUid: chat?.userUid,
                 }}

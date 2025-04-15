@@ -25,7 +25,6 @@ function Dashboard({
 
   useEffect(() => {
     if (!user) {
-      console.log("test");
       navigate("/");
     }
   }, [user]);

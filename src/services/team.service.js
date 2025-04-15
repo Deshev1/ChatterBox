@@ -16,7 +16,6 @@ export const createTeam = async (
   ownerId,
   imageUrl = "default-team.png"
 ) => {
-  console.log(name);
   try {
     //Get all teams
     const snapshot = await get(teamsRef);
@@ -26,7 +25,6 @@ export const createTeam = async (
     if (teams) {
       const nameExists = Object.values(teams).some((team) => {
         //Skip teamsCount property
-        console.log(typeof team);
         if (typeof team !== "object") return;
 
         //Return true of a match is found

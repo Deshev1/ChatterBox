@@ -19,7 +19,6 @@ function TeamsBar() {
   const navigate = useNavigate();
 
   const handleTeamClick = async (teamData) => {
-    console.log(teamData);
     const firstChatId = Object.keys(teamData.chats)[0];
     navigate(`/${teamData.id}/${firstChatId}`);
   };
@@ -49,7 +48,6 @@ function TeamsBar() {
       <div className="teams-list">
         {teamsData &&
           teamsData.map((team) => {
-            console.log("team data", team);
             return (
               <Avatar
                 handleClick={() => handleTeamClick(team)}

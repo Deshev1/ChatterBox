@@ -44,7 +44,7 @@
   font-size: 16px;
   margin-left: 10px;
   transition: 0.3s;
-  background-color: green;
+  background-color: var(--main-color);
 }
 
 .image-preview {

@@ -1,0 +1,9 @@
+.active-chat-header {
+  background-color: var(--main-color);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-xs);
+  gap: var(--space-xs);
+  flex: 0 0 60px;
+}

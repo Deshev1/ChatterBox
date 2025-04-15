@@ -20,6 +20,7 @@ function ChatHeader({ receiversData, chatData }) {
         <Avatar
           type={"user-image"}
           imageUrl={chatData.details.imageUrl}
+          color={"white"}
         />
         <h2> {chatData.details.name}</h2>
       </div>
@@ -30,7 +31,7 @@ function ChatHeader({ receiversData, chatData }) {
         type={"user-image"}
         status={receiversData[0].status}
         imageUrl={receiversData[0].profilePicture}
-        userUid={receiversData[0].uid}
+        color={"white"}
       />
       <div className="active-chat-status">
         <h2 className="active-chat-name">{receiversData[0].username}</h2>

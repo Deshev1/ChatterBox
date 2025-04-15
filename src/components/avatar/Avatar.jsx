@@ -9,12 +9,13 @@ function Avatar({
   handleClick,
   status,
   hover = false,
+  color = "var(--main-color)",
 }) {
   return (
     <div
       className="avatar-container"
       onClick={handleClick}
-      style={(handleClick || tooltip) && { cursor: "pointer" }}
+      style={{ cursor: handleClick || tooltip ? "pointer" : "" }}
     >
       <img
         src={imageUrl}
@@ -24,6 +25,7 @@ function Avatar({
           height: `${size}px`,
           width: `${size}px`,
           padding: `${padding}px`,
+          backgroundColor: `${color}`,
         }}
       />
       {tooltip && <div className="tooltip">{tooltip}</div>}
